@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Raja Himakar — Data Science Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #f5f7fa;
+    --surface: #ffffff;
+    --surface2: #eef1f6;
+    --accent: #0070f3;
+    --accent2: #7c3aed;
+    --text: #111827;
+    --muted: #4b5563;
+    --border: rgba(0,0,0,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,247,250,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,112,243,0.06) 0%, transparent 70%);
+    top: 10%;
+    right: -100px;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.8rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+  }
+  .btn-primary:hover { background: #0060df; transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding-left: 4rem;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .stat-card:hover { border-color: var(--accent); transform: translateX(6px); }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    letter-spacing: -0.02em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .about-text p + p { margin-top: 1.2rem; }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .highlight-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .highlight-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), rgba(0,112,243,0.1));
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 2.5rem;
+    padding-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2rem;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(0,212,170,0.2);
+  }
+
+  .timeline-dot.dim { background: var(--muted); box-shadow: none; }
+
+  .timeline-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-company {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline-bullets li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .timeline-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 3px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-category {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .skill-category:hover { border-color: var(--accent2); }
+
+  .skill-cat-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent2);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .skill-tag {
+    background: rgba(124,58,237,0.06);
+    border: 1px solid rgba(124,58,237,0.15);
+    color: #4b5563;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .edu-card:hover { border-color: var(--accent); }
+
+  .edu-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(0,112,243,0.04) 0%, transparent 70%);
+  }
+
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+  .edu-school {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .edu-detail { color: var(--muted); font-size: 0.8rem; }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    padding: 5rem 4rem;
+  }
+
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .contact-title em { font-style: italic; color: var(--accent); }
+
+  .contact-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  /* FADE IN ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-tag { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.25s; }
+  .hero-desc { animation-delay: 0.4s; }
+  .hero-ctas { animation-delay: 0.55s; }
+  .hero-stats { animation: fadeUp 0.7s 0.4s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .hero-stats { padding-left: 0; padding-top: 2rem; grid-template-rows: auto; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .stat-num { font-size: 1.8rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .edu-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RH // Portfolio</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Based in Melbourne, Australia</div>
+    <h1>Raja<br/><em>Himakar</em></h1>
+    <p class="hero-desc">Data Science Engineer specialising in MLOps, Azure ML, and production-scale machine learning platforms. I bridge the gap between data science experimentation and enterprise-grade deployment.</p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn btn-primary">View My Work</a>
+      <a href="https://www.linkedin.com/in/raja-himakar" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Years in Production ML</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Cloud Platforms</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years Tech Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-tag">01</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am a Data Science Engineer with a strong MLOps and DevOps foundation, bringing 4+ years of experience in the retail sector supporting production-scale machine learning platforms. My work sits at the intersection of machine learning, cloud infrastructure, and platform reliability.</p>
+      <p>I have hands-on exposure to on-prem legacy systems, Azure-based ML platforms, Azure ML–driven GenAI solutions, and AI-as-a-Service applications. I focus on enabling data science teams to transition models from experimentation to stable, secure, and scalable production systems.</p>
+      <p>My earlier background in DevOps — from TCS working on Comcast's infrastructure to cloud migrations and automated operations — continues to shape a pragmatic, automation-driven engineering approach that I bring to every ML platform challenge.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-item">
+        <span class="highlight-icon">☁️</span>
+        <span>Azure ML & GenAI workloads in regulated environments</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-icon">🔁</span>
+        <span>End-to-end CI/CD pipelines for ML workflows</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-icon">🔐</span>
+        <span>Security-first design & vulnerability remediation</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-icon">📊</span>
+        <span>R Shiny dashboards & data-driven decision tools</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-icon">🏭</span>
+        <span>On-prem to cloud migration at enterprise scale</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="section-header">
+    <span class="section-tag">02</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">Present · 2 Years · Melbourne</div>
+      <div class="timeline-role">Data Science Engineer</div>
+      <div class="timeline-company">Retail Sector — Enterprise ML Platform</div>
+      <ul class="timeline-bullets">
+        <li>Built and maintained Azure DevOps CI/CD pipelines for ML workflows, ensuring scalable, repeatable, and reliable deployments across multiple environments.</li>
+        <li>Operated and maintained production ML platforms supporting large enterprise data science teams and multiple business-critical applications across on-prem and Azure.</li>
+        <li>Managed Azure ML and GenAI workloads, including high-availability, sensitive ML applications in a regulated retail environment.</li>
+        <li>Ensured platform security, vulnerability remediation, and compliance across all ML infrastructure, reducing operational risk and improving reliability.</li>
+        <li>Supported R Shiny applications for interactive analytics and business-facing dashboards enabling data-driven decision-making.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">2 Years 9 Months · Melbourne</div>
+      <div class="timeline-role">Machine Learning Operations Engineer</div>
+      <div class="timeline-company">Retail Sector — ML Platform Team</div>
+      <ul class="timeline-bullets">
+        <li>Developed and upgraded Azure DevOps pipelines for infrastructure management to accommodate evolving business requirements.</li>
+        <li>Built scalable Azure/R products using containerisation and CI/CD approaches, migrating services from on-premises to Azure Cloud.</li>
+        <li>Established alerting and monitoring processes to reduce application downtime and improve platform reliability.</li>
+        <li>Built Shiny applications and dashboards to track infrastructure performance and cloud costs.</li>
+        <li>Performed IT operations including log analysis, performance tuning, patch management, and incident response with postmortems.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot dim"></div>
+      <div class="timeline-meta">8 Months · Melbourne</div>
+      <div class="timeline-role">Data Analyst</div>
+      <div class="timeline-company">The Financial Fox</div>
+      <ul class="timeline-bullets">
+        <li>Analysed current and historical data to identify trends and insights for the Australian startup ecosystem.</li>
+        <li>Prepared reports and visualisations using R, Python, SQL, and Infogram, communicating insights to management.</li>
+        <li>Developed data-driven predictive models to support decision-making across 30+ analysts.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot dim"></div>
+      <div class="timeline-meta">2 Years 3 Months · Hyderabad, India</div>
+      <div class="timeline-role">DevOps Engineer</div>
+      <div class="timeline-company">Tata Consultancy Services — Comcast Corporation</div>
+      <ul class="timeline-bullets">
+        <li>Led data migration projects transitioning legacy IT systems to AWS Cloud infrastructure.</li>
+        <li>Achieved 100% deployment success rate using GoCD, JBoss, and WebLogic for continuous deployment.</li>
+        <li>Configured Nagios, AppDynamics, Splunk, and Zabbix for production monitoring and alerting.</li>
+        <li>Automated BAU and IS maintenance using Shell Scripting, Python, and Ansible across Linux production servers.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-tag">03</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <div class="skill-cat-title">☁️ Cloud & ML Platforms</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Azure ML</span>
+        <span class="skill-tag">Azure Databricks</span>
+        <span class="skill-tag">Microsoft Azure</span>
+        <span class="skill-tag">Snowflake</span>
+        <span class="skill-tag">AWS</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">⚙️ DevOps & Infra</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Azure DevOps</span>
+        <span class="skill-tag">Terraform</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Shell Scripting</span>
+        <span class="skill-tag">Ansible</span>
+        <span class="skill-tag">Docker</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">🐍 Programming</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">R</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">R Shiny</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">🤖 ML & Data Science</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">MLOps</span>
+        <span class="skill-tag">Predictive Modeling</span>
+        <span class="skill-tag">NLP</span>
+        <span class="skill-tag">Data Science</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">📊 Monitoring & Observability</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Splunk</span>
+        <span class="skill-tag">Nagios</span>
+        <span class="skill-tag">AppDynamics</span>
+        <span class="skill-tag">Zabbix</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">📈 Visualisation & BI</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Data Visualisation</span>
+        <span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Business Intelligence</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="section-header">
+    <span class="section-tag">04</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">Master of Data Science</div>
+      <div class="edu-school">Monash University</div>
+      <div class="edu-detail">Melbourne, Australia</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Bachelor of Electronics & Communications Engineering</div>
+      <div class="edu-school">India</div>
+      <div class="edu-detail">Early internships at ECIL (CAN protocol) & Vizag Steel Plant (RINL)</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <h2 class="contact-title">Let's <em>Connect</em></h2>
+  <p class="contact-sub">Open to senior MLOps, Data Science Engineering, and Platform Engineering roles. Always happy to chat about production ML, cloud platforms, or anything in between.</p>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/raja-himakar" target="_blank" class="btn btn-primary">LinkedIn Profile ↗</a>
+    <a href="mailto:raja.himakar@example.com" class="btn btn-outline">Send an Email</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Raja Himakar</div>
+  <div class="footer-text">© 2025 · Melbourne, Australia · Data Science Engineer</div>
+  <div class="footer-text">Built with GitHub Pages</div>
+</footer>
+
+<script>
+  // Intersection Observer for timeline animations
+  const items = document.querySelectorAll('.timeline-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 120);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  items.forEach(item => observer.observe(item));
+</script>
+</body>
+</html>
