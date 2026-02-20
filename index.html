@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Raja Himakar — MLOps · SRE · Data Science Engineering</title>
+<title>Raja Himakar — MLOps · ML Engineer · Data Science Engineering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -156,7 +156,13 @@ section{padding:5.5rem 3rem;}
 /* each skill block is a dark terminal card */
 .sk-block .term-card-body{padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;}
 .stag{font-family:var(--font-mono);font-size:0.68rem;color:var(--t-mut);border:1px solid rgba(57,211,83,0.12);padding:0.25rem 0.6rem;border-radius:3px;background:var(--t-bg2);transition:all 0.2s;}
-.stag:hover{color:var(--t-grn);border-color:rgba(57,211,83,0.35);}
+.stag:hover{filter:brightness(1.3);}
+.stag-blue{color:#58a6ff;border-color:rgba(88,166,255,0.2);background:rgba(88,166,255,0.08);}
+.stag-amber{color:#f0b429;border-color:rgba(240,180,41,0.2);background:rgba(240,180,41,0.08);}
+.stag-green{color:#39d353;border-color:rgba(57,211,83,0.2);background:rgba(57,211,83,0.08);}
+.stag-purple{color:#c792ea;border-color:rgba(199,146,234,0.2);background:rgba(199,146,234,0.08);}
+.stag-red{color:#ff7b72;border-color:rgba(255,123,114,0.2);background:rgba(255,123,114,0.08);}
+.stag-teal{color:#39d3c8;border-color:rgba(57,211,200,0.2);background:rgba(57,211,200,0.08);}
 
 /* ── EDUCATION ── */
 .edu-section{background:var(--bg2);border-top:1.5px solid var(--border);border-bottom:1.5px solid var(--border);}
@@ -214,12 +220,12 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
     <span class="nav-cursor"></span>
   </div>
   <div class="nav-links">
-    <a href="#about">about</a>
-    <a href="#experience">experience</a>
-    <a href="#automations">automations</a>
-    <a href="#skills">skills</a>
-    <a href="#education">education</a>
-    <a href="#contact">contact</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#automations">Automations</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -229,7 +235,7 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
     <div class="hero-eyebrow">Melbourne, Australia</div>
     <h1 class="hero-name">Raja<br/><span>Himakar</span></h1>
     <div class="hero-sub">
-      <strong>Data Science Engineer</strong> &nbsp;·&nbsp; MLOps &nbsp;·&nbsp; SRE<br/>
+      <strong>Data Science Engineer</strong> &nbsp;·&nbsp; MLOps &nbsp;·&nbsp; ML Engineer<br/>
       Platform Engineering &nbsp;·&nbsp; Azure ML &nbsp;·&nbsp; GenAI Workloads
     </div>
     <div class="hero-ctas">
@@ -246,7 +252,7 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
       </div>
       <div class="term-card-body">
         <div class="tl anim"><span class="tp">$</span><span class="tc">whoami</span></div>
-        <div class="tl anim"><span class="to">raja_himakar &nbsp;<span class="tv">// Data Science Engineer</span></span></div>
+        <div class="tl anim"><span class="to">Data Science Engineer <span class="tv">|</span> MLOps <span class="tv">|</span> ML Engineer <span class="tv">|</span> Platform Eng</span></div>
         <div class="tl anim"><span class="tp">$</span><span class="tc">cat stack.txt</span></div>
         <div class="tl anim"><span class="to">Azure ML <span class="tv">·</span> Terraform <span class="tv">·</span> Python <span class="tv">·</span> R <span class="tv">·</span> Databricks</span></div>
         <div class="tl anim"><span class="tp">$</span><span class="tc">cat impact.txt</span></div>
@@ -271,9 +277,9 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
     <div class="metric-lbl">Data Scientists on enterprise ML platform</div>
   </div>
   <div class="metric reveal">
-    <div class="metric-pre">// reliability_ops</div>
-    <div class="metric-val">44<em>%</em></div>
-    <div class="metric-lbl">Of 1,130 platform incidents resolved last FY</div>
+    <div class="metric-pre">// platform_requests</div>
+    <div class="metric-val">1,130</div>
+    <div class="metric-lbl">Platform feature & service requests handled last FY across in-house ML platform</div>
   </div>
   <div class="metric reveal">
     <div class="metric-pre">// years_in_prod</div>
@@ -292,7 +298,7 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
   <div class="about-grid">
     <!-- light card for prose -->
     <div class="about-light-card reveal">
-      <p>I am a <strong>Data Science Engineer</strong> operating at the intersection of MLOps, Site Reliability Engineering, and cloud platform engineering. My focus is building and sustaining production-grade ML ecosystems that scale reliably across large enterprise environments.</p>
+      <p>I am a <strong>Data Science Engineer</strong> operating at the intersection of MLOps, ML Engineering, and cloud platform engineering. My focus is building and sustaining production-grade ML ecosystems that scale reliably across large enterprise environments.</p>
       <p>I have delivered end-to-end platform engineering across <strong>Azure ML, Azure Cloud Services, and on-premises</strong> infrastructure — including high-availability GenAI workloads and regulated ML applications in the retail sector. Reliability, observability, and automation are central to how I work.</p>
       <p>My DevOps roots at <strong>Tata Consultancy Services</strong> working on Comcast's infrastructure gave me a deep foundation in automation, zero-downtime deployments, and infrastructure-as-code — practices I carry into every ML platform challenge today.</p>
     </div>
@@ -304,14 +310,14 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
           <span class="label">stack.json</span>
         </div>
         <div class="term-card-body">
-          <div class="sr"><span class="sk">role_type:</span><span class="sv">MLOps · SRE · Platform Eng</span></div>
+          <div class="sr"><span class="sk">role_type:</span><span class="sv">MLOps · ML Engineer · Platform Eng</span></div>
           <div class="sr"><span class="sk">cloud:</span><span class="sv">Azure · AWS · On-Prem</span></div>
           <div class="sr"><span class="sk">languages:</span><span class="sv">Python · R · Shell · SQL</span></div>
           <div class="sr"><span class="sk">iac:</span><span class="sv">Terraform · Azure DevOps</span></div>
           <div class="sr"><span class="sk">containers:</span><span class="sv">Docker · CI/CD Pipelines</span></div>
           <div class="sr"><span class="sk">observability:</span><span class="sv">Splunk · Nagios · Azure Monitor</span></div>
           <div class="sr"><span class="sk">ml_platform:</span><span class="sv">Azure ML · Databricks · Snowflake</span></div>
-          <div class="sr"><span class="sk">open_to:</span><span class="sv open">Senior MLOps · Platform Eng</span></div>
+          <div class="sr"><span class="sk">open_to:</span><span class="sv open">Senior MLOps · ML Engineer · Platform Eng</span></div>
         </div>
       </div>
     </div>
@@ -344,12 +350,12 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
         </div>
         <div class="term-card-body">
           <ul class="exp-buls">
-            <li>Operated and maintained a <strong>production ML platform</strong> hosting 60+ applications across Azure ML, Azure Cloud Services, and on-premises — serving 70+ data scientists.</li>
-            <li>Managed <strong>Azure ML and GenAI workloads</strong> including high-availability, security-sensitive applications in a regulated retail environment — maintaining SLA adherence and rapid incident containment.</li>
-            <li>Functioned as a <strong>platform SRE</strong>, independently resolving 44% of 1,130 platform-level incidents last FY — owning triage, root cause analysis, remediation, and postmortems.</li>
+            <li>Operated and maintained a <strong>production ML platform</strong> hosting 60+ applications across Azure ML, Azure Cloud Services, and on-premises — serving a community of 70+ data scientists.</li>
+            <li>Managed <strong>Azure ML and GenAI workloads</strong> including high-availability, security-sensitive applications in a regulated retail environment — ensuring platform reliability and feature continuity.</li>
+            <li>Primary platform engineer for an <strong>in-house ML platform</strong> built on Azure services, internal packages, and custom components — handling 1,130+ platform feature and service requests from data scientists in the last FY.</li>
             <li>Enforced <strong>security-first platform engineering</strong>: vulnerability remediation, compliance governance, and proactive risk reduction across all infrastructure layers.</li>
             <li>Drove <strong>ML platform adoption</strong> by collaborating cross-functionally to improve usability, production readiness, and developer experience for data science teams.</li>
-            <li>Maintained <strong>R Shiny applications</strong> for interactive analytics and business-facing dashboards enabling data-driven decisions.</li>
+            <li>Maintained <strong>R Shiny applications</strong> for interactive analytics and business-facing dashboards enabling data-driven decisions across the enterprise.</li>
           </ul>
         </div>
       </div>
@@ -561,39 +567,39 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
   </div>
   <div class="skills-grid">
     <div class="sk-block term-card reveal">
-      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">cloud &amp; ml_platforms</span></div>
+      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">Cloud &amp; ML Platforms</span></div>
       <div class="term-card-body">
-        <span class="stag">Azure ML</span><span class="stag">Azure Databricks</span><span class="stag">Microsoft Azure</span><span class="stag">Snowflake</span><span class="stag">AWS</span><span class="stag">GenAI Workloads</span>
+        <span class="stag stag-blue">Azure ML</span><span class="stag stag-blue">Azure Databricks</span><span class="stag stag-blue">Microsoft Azure</span><span class="stag stag-blue">Snowflake</span><span class="stag stag-blue">AWS</span><span class="stag stag-blue">GenAI Workloads</span>
       </div>
     </div>
     <div class="sk-block term-card reveal">
-      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">devops &amp; infra</span></div>
+      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">DevOps &amp; Infra</span></div>
       <div class="term-card-body">
-        <span class="stag">Azure DevOps</span><span class="stag">Terraform</span><span class="stag">Docker</span><span class="stag">CI/CD</span><span class="stag">Ansible</span><span class="stag">Linux</span><span class="stag">Shell Scripting</span>
+        <span class="stag stag-amber">Azure DevOps</span><span class="stag stag-amber">Terraform</span><span class="stag stag-amber">Docker</span><span class="stag stag-amber">CI/CD</span><span class="stag stag-amber">Ansible</span><span class="stag stag-amber">Linux</span><span class="stag stag-amber">Shell Scripting</span>
       </div>
     </div>
     <div class="sk-block term-card reveal">
-      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">languages</span></div>
+      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">Languages</span></div>
       <div class="term-card-body">
-        <span class="stag">Python</span><span class="stag">R</span><span class="stag">SQL</span><span class="stag">MySQL</span><span class="stag">R Shiny</span><span class="stag">Shell</span>
+        <span class="stag stag-green">Python</span><span class="stag stag-green">R</span><span class="stag stag-green">SQL</span><span class="stag stag-green">MySQL</span><span class="stag stag-green">R Shiny</span><span class="stag stag-green">Shell</span>
       </div>
     </div>
     <div class="sk-block term-card reveal">
-      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">ml &amp; data_science</span></div>
+      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">ML &amp; Data Science</span></div>
       <div class="term-card-body">
-        <span class="stag">MLOps</span><span class="stag">Machine Learning</span><span class="stag">Predictive Modeling</span><span class="stag">NLP</span><span class="stag">Data Science</span>
+        <span class="stag stag-purple">MLOps</span><span class="stag stag-purple">Machine Learning</span><span class="stag stag-purple">Predictive Modeling</span><span class="stag stag-purple">NLP</span><span class="stag stag-purple">Data Science</span>
       </div>
     </div>
     <div class="sk-block term-card reveal">
-      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">observability</span></div>
+      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">Observability</span></div>
       <div class="term-card-body">
-        <span class="stag">Splunk</span><span class="stag">Nagios</span><span class="stag">AppDynamics</span><span class="stag">Zabbix</span><span class="stag">Azure Monitor</span>
+        <span class="stag stag-red">Splunk</span><span class="stag stag-red">Nagios</span><span class="stag stag-red">AppDynamics</span><span class="stag stag-red">Zabbix</span><span class="stag stag-red">Azure Monitor</span>
       </div>
     </div>
     <div class="sk-block term-card reveal">
-      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">visualisation &amp; bi</span></div>
+      <div class="term-card-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="label">Visualisation &amp; BI</span></div>
       <div class="term-card-body">
-        <span class="stag">Tableau</span><span class="stag">Power BI</span><span class="stag">R Shiny</span><span class="stag">Business Intelligence</span>
+        <span class="stag stag-teal">Tableau</span><span class="stag stag-teal">Power BI</span><span class="stag stag-teal">R Shiny</span><span class="stag stag-teal">Business Intelligence</span>
       </div>
     </div>
   </div>
@@ -629,7 +635,7 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
 <!-- ═══════════════ CONTACT ═══════════════ -->
 <section id="contact" class="contact-section">
   <h2 class="contact-heading reveal">Let's <span>Connect</span></h2>
-  <p class="contact-sub reveal">Open to Senior MLOps, Platform Engineering, and Data Science Engineering roles in Melbourne and beyond.</p>
+  <p class="contact-sub reveal">Open to Senior MLOps, ML Engineer, Platform Engineering, and Data Science Engineering roles in Melbourne and beyond.</p>
   <div class="contact-term-wrap reveal">
     <div class="contact-term term-card">
       <div class="term-card-bar">
@@ -643,24 +649,24 @@ footer{padding:1.5rem 3rem;border-top:1px solid var(--border);display:flex;justi
         <div class="cl"><span class="ck">location:</span><span class="cv">Melbourne, VIC, Australia</span></div>
         <div class="cl"><span class="ck">linkedin:</span><span class="cv"><a href="https://www.linkedin.com/in/raja-himakar" target="_blank">linkedin.com/in/raja-himakar</a></span></div>
         <div class="cl"><span class="ck">portfolio:</span><span class="cv"><a href="https://rajahimakar.github.io" target="_blank">rajahimakar.github.io</a></span></div>
-        <div class="cl"><span class="ck">open_to:</span><span class="cv" style="color:var(--t-grn);">Senior MLOps · Platform Eng · DS Eng</span></div>
+        <div class="cl"><span class="ck">open_to:</span><span class="cv" style="color:var(--t-grn);">Senior MLOps · ML Engineer · Platform Eng · DS Eng</span></div>
       </div>
     </div>
   </div>
   <div class="contact-ctas reveal">
     <a href="https://www.linkedin.com/in/raja-himakar" target="_blank" class="btn btn-green">Connect on LinkedIn ↗</a>
-    <a href="mailto:" class="btn btn-outline">Send Email</a>
+    <a href="/cdn-cgi/l/email-protection#6b" class="btn btn-outline">Send Email</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">Raja Himakar</div>
-  <div>MLOps · SRE · Platform Engineering · Melbourne 2025</div>
+  <div>MLOps · ML Engineer · Platform Engineering · Melbourne 2025</div>
   <a href="https://rajahimakar.github.io" style="color:var(--green);text-decoration:none;">rajahimakar.github.io</a>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleExp(hdr) {
   const body = hdr.nextElementSibling;
   const tog = hdr.querySelector('.exp-tog');
@@ -673,10 +679,3 @@ const obs = new IntersectionObserver((entries) => {
     if (e.isIntersecting) {
       setTimeout(() => e.target.classList.add('visible'), i * 70);
       obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.07 });
-document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
-</script>
-</body>
-</html>
