@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Raja Himakar — MLOps · ML Engineer · Data Science Engineering</title>
+<title>Raja Himakar — MLOps · AI/ML Engineer · Data Science Engineering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -52,7 +52,7 @@ nav { position: fixed; top: 0; width: 100%; z-index: 100; height: 54px; padding:
 /* TERMINAL CARD */
 .tcard { border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.18); }
 .tcard-bar { background: var(--t-surf); padding: 0.55rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--t-bdr); }
-.tcard-bar .lbl { font-family: var(--fmono); font-size: 0.62rem; color: var(--t-mut); margin-left: 0.4rem; letter-spacing: 0.05em; }
+.tcard-bar .lbl { font-family: var(--fmono); font-size: 0.62rem; color: #8fba9f; margin-left: 0.4rem; letter-spacing: 0.05em; }
 .tdot { width: 10px; height: 10px; border-radius: 50%; }
 .tdot.r{background:#ff5f57;} .tdot.y{background:#febc2e;} .tdot.g{background:#28c840;}
 .tcard-body { background: var(--t-bg); padding: 1.4rem 1.8rem; font-family: var(--fmono); }
@@ -88,9 +88,11 @@ section { padding: 5.5rem 3rem; }
 /* LIGHT CARD */
 .lcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
 
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* REVEAL — content always visible; animation is progressive enhancement */
+.reveal { opacity: 1; transform: translateY(0); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.will-animate { opacity: 0; transform: translateY(22px); }
+.flip-wrap.will-animate { opacity: 0; transform: none; }
+.reveal.visible { opacity: 1 !important; transform: translateY(0) !important; }
 
 /* ══════════════════════════════════════════
    HERO
@@ -114,10 +116,10 @@ section { padding: 5.5rem 3rem; }
 .metric { background: var(--t-bg); padding: 1.6rem 1.4rem; border-right: 1px solid var(--t-bdr); transition: background 0.25s; }
 .metric:last-child { border-right: none; }
 .metric:hover { background: var(--t-bg2); }
-.metric-pre { font-family: var(--fmono); font-size: 0.6rem; color: var(--t-mut); letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+.metric-pre { font-family: var(--fmono); font-size: 0.6rem; color: #7fc49a; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
 .metric-val { font-family: var(--fdisp); font-size: 2.2rem; font-weight: 800; color: var(--t-grn); line-height: 1; margin-bottom: 0.3rem; }
 .metric-val em { font-style: normal; font-size: 1.4rem; }
-.metric-lbl { font-family: var(--fmono); font-size: 0.62rem; color: var(--t-mut); line-height: 1.6; }
+.metric-lbl { font-family: var(--fmono); font-size: 0.62rem; color: #8fba9f; line-height: 1.6; }
 
 /* ══════════════════════════════════════════
    PLATFORM PHILOSOPHY
@@ -144,7 +146,7 @@ section { padding: 5.5rem 3rem; }
    IMPACT STORIES
 ══════════════════════════════════════════ */
 .impact-section { background: var(--bg2); border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
-.impact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-bottom: 2.5rem; }
+.impact-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.2rem; margin-bottom: 2.5rem; }
 .impact-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; }
 .impact-card:hover { border-color: var(--green-md); box-shadow: 0 6px 24px rgba(26,122,58,0.09); }
 .impact-card-top { padding: 1.5rem 1.5rem 1rem; border-bottom: 1px solid var(--border); }
@@ -189,8 +191,8 @@ section { padding: 5.5rem 3rem; }
 .auto-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.2rem; }
 .auto-inner { display: flex; gap: 0.9rem; align-items: flex-start; }
 .auto-ic { color: var(--t-grn); flex-shrink: 0; font-size: 0.85rem; margin-top: 2px; }
-.auto-name { font-family: var(--fmono); font-size: 0.74rem; color: var(--t-txt); font-weight: 500; margin-bottom: 0.4rem; }
-.auto-desc { font-family: var(--fmono); font-size: 0.7rem; color: var(--t-mut); line-height: 1.7; }
+.auto-name { font-family: var(--fmono); font-size: 0.74rem; color: #d4e8da; font-weight: 500; margin-bottom: 0.4rem; }
+.auto-desc { font-family: var(--fmono); font-size: 0.7rem; color: #8fba9f; line-height: 1.7; }
 
 /* ══════════════════════════════════════════
    CURRENTLY
@@ -225,9 +227,10 @@ section { padding: 5.5rem 3rem; }
 .yv.no  { color: var(--t-red); }
 
 /* ══════════════════════════════════════════
-   SKILLS
+   SKILLS — bright header on dark card
 ══════════════════════════════════════════ */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(230px,1fr)); gap: 1rem; }
+.sk-block .tcard-bar .lbl { color: #d4e8da; font-size: 0.68rem; font-weight: 500; }
 .stag { font-family: var(--fmono); font-size: 0.68rem; padding: 0.25rem 0.6rem; border-radius: 3px; border: 1px solid; transition: filter 0.2s; }
 .stag:hover { filter: brightness(1.25); }
 .stag-blue   { color:#58a6ff; border-color:rgba(88,166,255,0.25);  background:rgba(88,166,255,0.1);  }
@@ -236,6 +239,27 @@ section { padding: 5.5rem 3rem; }
 .stag-purple { color:#c792ea; border-color:rgba(199,146,234,0.25); background:rgba(199,146,234,0.1); }
 .stag-red    { color:#ff7b72; border-color:rgba(255,123,114,0.25); background:rgba(255,123,114,0.1); }
 .stag-teal   { color:#39d3c8; border-color:rgba(57,211,200,0.25);  background:rgba(57,211,200,0.1);  }
+
+/* ══════════════════════════════════════════
+   FLIP CARDS — automations
+══════════════════════════════════════════ */
+.auto-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.2rem; }
+.flip-wrap { perspective: 1000px; height: 210px; cursor: pointer; }
+.flip-wrap.reveal { transform: none; }
+.flip-wrap.reveal.visible { transform: none; }
+.flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1); transform-style: preserve-3d; }
+.flip-wrap:hover .flip-inner { transform: rotateY(180deg); }
+.flip-front, .flip-back { position: absolute; inset: 0; border-radius: 8px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.18); }
+.flip-front { background: var(--t-bg); display: flex; flex-direction: column; }
+.flip-front-bar { background: var(--t-surf); padding: 0.55rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--t-bdr); flex-shrink: 0; }
+.flip-front-bar .lbl { font-family: var(--fmono); font-size: 0.62rem; color: #8fba9f; margin-left: 0.4rem; letter-spacing: 0.05em; }
+.flip-front-body { flex: 1; display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.4rem; }
+.flip-ic { font-size: 1.5rem; flex-shrink: 0; }
+.flip-title { font-family: var(--fmono); font-size: 0.78rem; color: #d4e8da; font-weight: 500; line-height: 1.5; }
+.flip-hint { font-family: var(--fmono); font-size: 0.6rem; color: var(--t-mut); margin-top: 0.5rem; }
+.flip-back { background: #0a1f12; border: 1.5px solid rgba(57,211,83,0.25); transform: rotateY(180deg); display: flex; flex-direction: column; padding: 1.2rem 1.4rem; justify-content: center; }
+.flip-back-title { font-family: var(--fmono); font-size: 0.7rem; color: var(--t-grn); font-weight: 600; margin-bottom: 0.6rem; letter-spacing: 0.05em; }
+.flip-back-desc { font-family: var(--fmono); font-size: 0.68rem; color: #8fba9f; line-height: 1.75; }
 
 /* ══════════════════════════════════════════
    EDUCATION
@@ -309,7 +333,7 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
     <div class="hero-eyebrow">Melbourne, Australia</div>
     <h1 class="hero-name">Raja<br/><span>Himakar</span></h1>
     <div class="hero-sub">
-      <strong>Data Science Engineer</strong> &nbsp;·&nbsp; MLOps &nbsp;·&nbsp; ML Engineer<br/>
+      <strong>Data Science Engineer</strong> &nbsp;·&nbsp; MLOps &nbsp;·&nbsp; AI/ML Engineer<br/>
       Platform Engineering &nbsp;·&nbsp; Azure ML &nbsp;·&nbsp; GenAI Workloads
     </div>
     <div class="hero-ctas">
@@ -326,13 +350,13 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
       </div>
       <div class="tcard-body">
         <div class="tl a"><span class="tp">$</span><span class="tc">whoami</span></div>
-        <div class="tl a"><span class="to">Raja Himakar <span class="tv">// Data Science Engineer · MLOps · ML Engineer</span></span></div>
+        <div class="tl a"><span class="to">Raja Himakar <span class="tv">// Data Science Engineer · MLOps · AI/ML Engineer</span></span></div>
         <div class="tl a"><span class="tp">$</span><span class="tc">cat platform_philosophy.txt</span></div>
         <div class="tl a"><span class="to"><span class="tv">"</span>Reliability is not a feature. It's the foundation.<span class="tv">"</span></span></div>
         <div class="tl a"><span class="tp">$</span><span class="tc">cat impact.txt</span></div>
         <div class="tl a"><span class="to">$70k+ saved <span class="tv">|</span> 60+ apps <span class="tv">|</span> 70+ data scientists <span class="tv">|</span> 4+ yrs</span></div>
         <div class="tl a"><span class="tp">$</span><span class="tc">cat status.txt</span></div>
-        <div class="tl a"><span class="tcm"># open to Senior MLOps · ML Engineer · Platform Eng roles</span></div>
+        <div class="tl a"><span class="tcm"># open to Senior MLOps · AI/ML Engineer · Platform Eng roles</span></div>
       </div>
     </div>
   </div>
@@ -372,8 +396,8 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
   <div class="philosophy-grid">
     <div class="philosophy-text reveal">
       <div class="philosophy-quote">"Reliability is not a feature you add later. It's the foundation everything else is built on."</div>
-      <p>When ChatGPT launched, it went down under load because scale was an afterthought. When AWS had its 2023 outage, Australian banks went offline. When Optus failed, millions of people lost connectivity. These weren't bad engineers — they were systems where <strong>speed to market won the argument against reliability</strong>, and the ceiling was hit hard when it mattered most.</p>
-      <p>I've built and operated ML platforms where 70+ data scientists depend on the infrastructure working — not eventually, not mostly, but <em>consistently</em>. That shapes how I think about every deployment, every pipeline, every configuration change. <strong>Auto-restart, structured logging, proactive monitoring, and alerting aren't nice-to-haves</strong> — they're the first things I design in, not the last things I bolt on.</p>
+      <p>Some of the most visible outages in recent years weren't caused by bad engineers — they were caused by systems where <strong>speed to market won the argument against reliability</strong>. The ceiling gets hit hard when it matters most — under real load, in production, when users are depending on it.</p>
+      <p>I've operated and supported ML platforms where 70+ data scientists depend on the infrastructure working — not eventually, not mostly, but <em>consistently</em>. Our team handled both platform operations and our own development work, which means I've seen both sides: what breaks under pressure, and what holds. That shapes how I think about every deployment, every pipeline, every configuration change. <strong>Auto-restart, structured logging, proactive monitoring, and alerting aren't nice-to-haves</strong> — they're the first things I advocate for, not the last things bolted on.</p>
       <p>Cost is also a reliability problem. A platform burning budget on unused resources is a platform that eventually gets defunded. I treat <strong>cost hygiene as platform health</strong> — finding waste before it becomes a problem is the same discipline as finding vulnerabilities before they become incidents.</p>
     </div>
     <div class="reveal">
@@ -457,7 +481,7 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
       <div class="impact-card-top">
         <span class="impact-icon">🏗️</span>
         <div class="impact-title">Keeping 60+ Apps Alive for 70+ Scientists</div>
-        <div class="impact-saving">497 platform requests · 4+ years production ML</div>
+        <div class="impact-saving">497 platform requests · 4+ years production AI/ML</div>
       </div>
       <div class="tcard impact-term">
         <div class="tcard-bar" style="border-radius:0;">
@@ -465,14 +489,34 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
           <span class="lbl">platform_ops.sh</span>
         </div>
         <div class="tcard-body" style="padding:1.1rem 1.3rem;">
-          <div class="story-line"><span class="sl-label">situation:</span><span class="sl-text">An in-house ML platform built on Azure services, internal packages, and custom components — <strong>60+ live applications, 70+ data scientists depending on it daily.</strong></span></div>
+          <div class="story-line"><span class="sl-label">situation:</span><span class="sl-text">An in-house AI/ML platform built on Azure services, internal packages, and custom components — <strong>60+ live applications, 70+ data scientists depending on it daily.</strong></span></div>
           <div class="story-line"><span class="sl-label">approach:</span><span class="sl-text">Built reliability in from the start — CI/CD pipelines, Azure Monitor alerting, shell-based health checks, structured logging, proactive security hardening across all layers.</span></div>
-          <div class="story-line"><span class="sl-label">outcome:</span><span class="sl-text">Handled <strong>497 platform feature and service requests</strong> last FY. Platform maintained GenAI and regulated ML workloads in a production retail environment without major incidents.</span></div>
+          <div class="story-line"><span class="sl-label">outcome:</span><span class="sl-text">Handled <strong>497 platform feature and service requests</strong> last FY. Platform maintained GenAI and regulated AI/ML workloads in a production retail environment without major incidents.</span></div>
           <div class="story-line"><span class="sl-label">mindset:</span><span class="sl-text"><strong>The platform is the product.</strong> Data scientists shipping models is the output. My job is making sure nothing gets in their way.</span></div>
         </div>
       </div>
     </div>
 
+
+    <div class="impact-card reveal">
+      <div class="impact-card-top">
+        <span class="impact-icon">🗄️</span>
+        <div class="impact-title">45TB Data Cleanup — Licensing Cost Avoided</div>
+        <div class="impact-saving">Significant licensing expenditure prevented</div>
+      </div>
+      <div class="tcard impact-term">
+        <div class="tcard-bar" style="border-radius:0;">
+          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+          <span class="lbl">data_cleanup.sh</span>
+        </div>
+        <div class="tcard-body" style="padding:1.1rem 1.3rem;">
+          <div class="story-line"><span class="sl-label">situation:</span><span class="sl-text">Platform storage was accumulating stale, unused data — <strong>nobody was tracking what still needed to be retained vs what was simply never cleaned up.</strong></span></div>
+          <div class="story-line"><span class="sl-label">action:</span><span class="sl-text">Identified and cleaned up <strong>45TB of redundant and unused data</strong> across the platform estate — preventing the need to purchase additional storage licensing to accommodate the growing footprint.</span></div>
+          <div class="story-line"><span class="sl-label">outcome:</span><span class="sl-text">Significant licensing expenditure avoided. Storage footprint reduced meaningfully — <strong>less cost, less noise, less risk</strong> from data that should not have been retained.</span></div>
+          <div class="story-line"><span class="sl-label">lesson:</span><span class="sl-text">Cost savings are not always about compute. <strong>Data hygiene is platform hygiene.</strong></span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -498,7 +542,7 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
         <div class="tcard-bar" style="border-radius:0;"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">responsibilities.sh</span></div>
         <div class="tcard-body">
           <ul class="exp-buls">
-            <li>Operated and maintained a <strong>production ML platform</strong> hosting 60+ applications across Azure ML, Azure Cloud Services, and on-premises — serving a community of 70+ data scientists.</li>
+            <li>Operated and maintained a <strong>production AI/ML platform</strong> hosting 60+ applications across Azure ML, Azure Cloud Services, and on-premises — serving a community of 70+ data scientists.</li>
             <li>Managed <strong>Azure ML and GenAI workloads</strong> in a regulated retail environment — ensuring platform reliability, security compliance, and feature continuity.</li>
             <li>Delivered <strong>$70k+ in annual cost savings</strong> through proactive platform audits — identifying unused resources, right-sizing infrastructure, and enabling cost-efficient platform features.</li>
             <li>Remediated a <strong>high-severity vulnerability</strong> via targeted package patching — avoiding a 3–4 month full infrastructure revamp.</li>
@@ -587,62 +631,87 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
     <h2 class="sec-title">Automations</h2>
     <div class="sec-line"></div>
   </div>
-  <p class="auto-intro">Automation is how I scale myself. Every recurring manual task is a bug to be fixed. These are some of the solutions I've shipped to reduce toil, improve reliability, and give the team time back.</p>
+  <p class="auto-intro">Automation is how I scale myself. Every recurring manual task is a bug to be fixed. Hover each card to see what problem it solved.</p>
   <div class="auto-grid">
-    <div class="tcard reveal">
-      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">cicd_pipeline_automation.sh</span></div>
-      <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner"><span class="auto-ic">⚡</span><div>
-          <div class="auto-name">Azure DevOps CI/CD Pipeline Automation</div>
-          <div class="auto-desc">Pipelines that orchestrate Linux shell scripts for environment provisioning, validation gates, and multi-environment ML deployments — eliminating manual release steps across 60+ applications.</div>
-        </div></div>
+
+    <div class="flip-wrap reveal">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="flip-front-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">cicd_pipeline_automation.sh</span></div>
+          <div class="flip-front-body"><span class="flip-ic">⚡</span><div><div class="flip-title">Azure DevOps CI/CD Pipeline Automation</div><div class="flip-hint">hover to see details →</div></div></div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-title">// problem_solved</div>
+          <div class="flip-back-desc">Every team deployed differently — no standard, no consistency, high risk of human error. Built pipelines orchestrating Linux shell scripts for provisioning, validation gates, and multi-environment ML deployments. Eliminated manual release steps across 60+ applications.</div>
+        </div>
       </div>
     </div>
-    <div class="tcard reveal">
-      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">azure_monitor_alerting.py</span></div>
-      <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner"><span class="auto-ic">🔔</span><div>
-          <div class="auto-name">Azure Monitor Alerting &amp; Observability Pipelines</div>
-          <div class="auto-desc">Proactive monitoring pipelines covering app health, resource thresholds, and ML job failures — reducing mean time to detect before users are impacted.</div>
-        </div></div>
+
+    <div class="flip-wrap reveal">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="flip-front-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">azure_monitor_alerting.py</span></div>
+          <div class="flip-front-body"><span class="flip-ic">🔔</span><div><div class="flip-title">Azure Monitor Alerting &amp; Observability Pipelines</div><div class="flip-hint">hover to see details →</div></div></div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-title">// problem_solved</div>
+          <div class="flip-back-desc">Issues were discovered reactively — by users, not by the platform team. Built proactive monitoring pipelines using Azure Monitor and KQL covering app health, resource thresholds, and ML job failures. Team now knows before users do.</div>
+        </div>
       </div>
     </div>
-    <div class="tcard reveal">
-      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">platform_toil_reduction.sh</span></div>
-      <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner"><span class="auto-ic">🖥️</span><div>
-          <div class="auto-name">Shell Scripting for Platform Toil Reduction</div>
-          <div class="auto-desc">Scripts automating log cleanup, resource stats collection, environment health checks, and hygiene tasks — eliminating a class of recurring manual work entirely.</div>
-        </div></div>
+
+    <div class="flip-wrap reveal">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="flip-front-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">platform_toil_reduction.sh</span></div>
+          <div class="flip-front-body"><span class="flip-ic">🖥️</span><div><div class="flip-title">Shell Scripting for Platform Toil Reduction</div><div class="flip-hint">hover to see details →</div></div></div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-title">// problem_solved</div>
+          <div class="flip-back-desc">Recurring manual tasks — log cleanup, health checks, environment hygiene — were consuming engineering time every week. Shell scripts automated the entire class of work. Zero manual intervention now needed for routine platform maintenance.</div>
+        </div>
       </div>
     </div>
-    <div class="tcard reveal">
-      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">ansible_infra_automation.yml</span></div>
-      <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner"><span class="auto-ic">🤖</span><div>
-          <div class="auto-name">Ansible-Based Infrastructure Automation</div>
-          <div class="auto-desc">Automated Linux server maintenance, software updates, and configuration management — enforcing consistent state across infrastructure without manual intervention.</div>
-        </div></div>
+
+    <div class="flip-wrap reveal">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="flip-front-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">ansible_infra_automation.yml</span></div>
+          <div class="flip-front-body"><span class="flip-ic">🤖</span><div><div class="flip-title">Ansible-Based Infrastructure Automation</div><div class="flip-hint">hover to see details →</div></div></div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-title">// problem_solved</div>
+          <div class="flip-back-desc">Linux server maintenance was manual and inconsistent across environments — drift was inevitable. Ansible playbooks automated software updates, configuration management, and server maintenance — enforcing consistent state without human intervention.</div>
+        </div>
       </div>
     </div>
-    <div class="tcard reveal">
-      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">cost_audit.sh</span></div>
-      <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner"><span class="auto-ic">💰</span><div>
-          <div class="auto-name">Automated Cost &amp; Usage Extraction Scripts</div>
-          <div class="auto-desc">Scripts to extract current resource usage and surface cost anomalies across the platform estate — the tooling behind $70k+ in identified annual savings.</div>
-        </div></div>
+
+    <div class="flip-wrap reveal">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="flip-front-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">cost_audit.sh</span></div>
+          <div class="flip-front-body"><span class="flip-ic">💰</span><div><div class="flip-title">Automated Cost &amp; Usage Extraction Scripts</div><div class="flip-hint">hover to see details →</div></div></div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-title">// problem_solved</div>
+          <div class="flip-back-desc">No visibility into which resources were actually being used vs silently burning budget. Scripts extracted current usage across the platform estate, surfacing idle databases, oversized clusters, and unused servers — directly enabling $70k+ in annual savings.</div>
+        </div>
       </div>
     </div>
-    <div class="tcard reveal">
-      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">ml_health_agent.py</span></div>
-      <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner"><span class="auto-ic">🧠</span><div>
-          <div class="auto-name">ML Platform Health Agent <span style="color:var(--t-grn);font-size:0.65rem;">NEW</span></div>
-          <div class="auto-desc">Agentic AI system that collects from Azure ML, Azure Monitor, Jira, and shell checks — then uses Claude to synthesise a plain-English health report delivered via Email and Teams daily.</div>
-        </div></div>
+
+    <div class="flip-wrap reveal">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="flip-front-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">ml_health_agent.py</span></div>
+          <div class="flip-front-body"><span class="flip-ic">🧠</span><div><div class="flip-title">ML Platform Health Agent <span style="color:var(--t-grn);font-size:0.62rem;"> NEW</span></div><div class="flip-hint">hover to see details →</div></div></div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-title">// problem_solved</div>
+          <div class="flip-back-desc">Platform health required manual checking across Azure ML, Monitor, and Jira — no single view, no narrative. Agentic AI system collects from all sources and uses Claude to synthesise a plain-English daily health report — delivered via Email and Teams automatically.</div>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -669,19 +738,19 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
     <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">Languages</span></div>
       <div class="tcard-body" style="padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
-        <span class="stag stag-green">Python</span><span class="stag stag-green">R</span><span class="stag stag-green">SQL</span><span class="stag stag-green">MySQL</span><span class="stag stag-green">R Shiny</span><span class="stag stag-green">Shell</span>
+        <span class="stag stag-green">Python</span><span class="stag stag-green">R</span><span class="stag stag-green">SQL</span><span class="stag stag-green">R Shiny</span><span class="stag stag-green">Shell</span>
       </div>
     </div>
     <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">ML &amp; Data Science</span></div>
       <div class="tcard-body" style="padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
-        <span class="stag stag-purple">MLOps</span><span class="stag stag-purple">Machine Learning</span><span class="stag stag-purple">Predictive Modeling</span><span class="stag stag-purple">NLP</span><span class="stag stag-purple">Data Science</span>
+        <span class="stag stag-purple">MLOps</span><span class="stag stag-purple">AI/ML Engineering</span><span class="stag stag-purple">Predictive Modeling</span><span class="stag stag-purple">NLP</span><span class="stag stag-purple">Data Science</span>
       </div>
     </div>
     <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">Observability</span></div>
       <div class="tcard-body" style="padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
-        <span class="stag stag-red">Splunk</span><span class="stag stag-red">Nagios</span><span class="stag stag-red">AppDynamics</span><span class="stag stag-red">Zabbix</span><span class="stag stag-red">Azure Monitor</span>
+        <span class="stag stag-red">Azure Monitor</span><span class="stag stag-red">KQL</span><span class="stag stag-red">Azure Alerts</span><span class="stag stag-red">Splunk</span><span class="stag stag-red">Log Analytics</span>
       </div>
     </div>
     <div class="tcard reveal">
@@ -791,7 +860,7 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
 <!-- ══════════ CONTACT ══════════ -->
 <section id="contact" class="contact-section">
   <h2 class="contact-heading reveal">Let's <span>Connect</span></h2>
-  <p class="contact-sub reveal">Open to Senior MLOps, ML Engineer, Platform Engineering, and Data Science Engineering roles in Melbourne and beyond. Nonprofits and social-good organisations welcome.</p>
+  <p class="contact-sub reveal">Open to Senior MLOps, AI/ML Engineer, Platform Engineering, and Data Science Engineering roles in Melbourne and beyond. Nonprofits and social-good organisations welcome.</p>
   <div class="contact-twrap reveal">
     <div class="tcard">
       <div class="tcard-bar">
@@ -805,20 +874,20 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
         <div class="cl"><span class="ck">location:</span><span class="cv">Melbourne, VIC, Australia</span></div>
         <div class="cl"><span class="ck">linkedin:</span><span class="cv"><a href="https://www.linkedin.com/in/raja-himakar" target="_blank">linkedin.com/in/raja-himakar</a></span></div>
         <div class="cl"><span class="ck">portfolio:</span><span class="cv"><a href="https://rajahimakar.github.io" target="_blank">rajahimakar.github.io</a></span></div>
-        <div class="cl"><span class="ck">open_to:</span><span class="cv" style="color:var(--t-grn);">Senior MLOps · ML Engineer · Platform Eng · DS Eng</span></div>
+        <div class="cl"><span class="ck">open_to: Senior MLOps · AI/ML Engineer · Platform Eng · DS Eng</span></div>
       </div>
     </div>
   </div>
   <div class="contact-ctas reveal">
     <a href="https://www.linkedin.com/in/raja-himakar" target="_blank" class="btn btn-green">Connect on LinkedIn ↗</a>
-    <a href="mailto:" class="btn btn-outline">Send Email</a>
+    <a href="/cdn-cgi/l/email-protection#c5" class="btn btn-outline">Send Email</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">Raja Himakar</div>
-  <div>MLOps · ML Engineer · Platform Engineering · Melbourne 2025</div>
+  <div>MLOps · AI/ML Engineer · Platform Engineering · Melbourne 2025</div>
   <a href="https://rajahimakar.github.io" style="color:var(--green);text-decoration:none;">rajahimakar.github.io</a>
 </footer>
 
@@ -830,15 +899,20 @@ function toggleExp(hdr) {
   body.classList.toggle('open', !isOpen);
   tog.innerHTML = isOpen ? '<span>+</span> expand' : '<span>−</span> collapse';
 }
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 70);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.07 });
-document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+// Only animate if IntersectionObserver is supported
+if ('IntersectionObserver' in window) {
+  document.querySelectorAll('.reveal').forEach(r => r.classList.add('will-animate'));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+}
 </script>
 </body>
 </html>
