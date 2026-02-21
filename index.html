@@ -28,6 +28,9 @@
   --t-mut:    #5a7055;
   --t-txt:    #cdd9c5;
   --t-bdr:    rgba(57,211,83,0.18);
+  --t-red:    #ff7b72;
+  --t-pur:    #c792ea;
+  --t-tel:    #39d3c8;
 }
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -46,15 +49,15 @@ nav { position: fixed; top: 0; width: 100%; z-index: 100; height: 54px; padding:
 .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.72rem; font-family: var(--fmono); padding: 0.3rem 0.85rem; border-radius: 4px; transition: all 0.2s; }
 .nav-links a:hover { color: var(--green); background: var(--green-lt); }
 
-/* TERMINAL CARD — shared component */
+/* TERMINAL CARD */
 .tcard { border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.18); }
 .tcard-bar { background: var(--t-surf); padding: 0.55rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--t-bdr); }
 .tcard-bar .lbl { font-family: var(--fmono); font-size: 0.62rem; color: var(--t-mut); margin-left: 0.4rem; letter-spacing: 0.05em; }
 .tdot { width: 10px; height: 10px; border-radius: 50%; }
-.tdot.r { background: #ff5f57; } .tdot.y { background: #febc2e; } .tdot.g { background: #28c840; }
+.tdot.r{background:#ff5f57;} .tdot.y{background:#febc2e;} .tdot.g{background:#28c840;}
 .tcard-body { background: var(--t-bg); padding: 1.4rem 1.8rem; font-family: var(--fmono); }
 
-/* Terminal line animation */
+/* Terminal lines */
 .tl { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.35rem; }
 .tl.a { opacity: 0; animation: ta 0.25s forwards; }
 .tl.a:nth-child(1){animation-delay:0.3s} .tl.a:nth-child(2){animation-delay:0.65s}
@@ -62,39 +65,18 @@ nav { position: fixed; top: 0; width: 100%; z-index: 100; height: 54px; padding:
 .tl.a:nth-child(5){animation-delay:1.6s} .tl.a:nth-child(6){animation-delay:1.9s}
 .tl.a:nth-child(7){animation-delay:2.2s} .tl.a:nth-child(8){animation-delay:2.5s}
 @keyframes ta { to { opacity: 1; } }
-.tp { color: var(--t-grn); font-size: 0.78rem; flex-shrink: 0; }
-.tc { color: var(--t-amb); font-size: 0.78rem; }
-.to { color: var(--t-txt); font-size: 0.78rem; padding-left: 1rem; }
-.tv { color: var(--t-blu); }
-.tcm { color: var(--t-mut); font-size: 0.72rem; padding-left: 1rem; font-style: italic; }
+.tp{color:var(--t-grn);font-size:0.78rem;flex-shrink:0;}
+.tc{color:var(--t-amb);font-size:0.78rem;}
+.to{color:var(--t-txt);font-size:0.78rem;padding-left:1rem;}
+.tv{color:var(--t-blu);}
+.tcm{color:var(--t-mut);font-size:0.72rem;padding-left:1rem;font-style:italic;}
 
-/* HERO */
-.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding: 7rem 3rem 4rem; }
-.hero-eyebrow { font-family: var(--fmono); font-size: 0.7rem; color: var(--green); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
-.hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--green); display: block; }
-.hero-name { font-family: var(--fdisp); font-size: clamp(3rem,5.5vw,5rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--text); margin-bottom: 1rem; }
-.hero-name span { color: var(--green); }
-.hero-sub { font-family: var(--fmono); font-size: 0.8rem; color: var(--muted); margin-bottom: 1.8rem; line-height: 1.8; }
-.hero-sub strong { color: var(--text); }
-.hero-ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+/* BUTTONS */
 .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.5rem; border-radius: 5px; font-size: 0.74rem; font-weight: 600; font-family: var(--fmono); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; border: none; cursor: pointer; }
 .btn-green { background: var(--green); color: #fff; }
 .btn-green:hover { background: #155f2e; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,122,58,0.25); }
 .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
 .btn-outline:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
-.hero-tcard-wrap { position: relative; }
-.hero-tcard-wrap::before { content: ''; position: absolute; inset: -14px; background: var(--green-lt); border-radius: 14px; z-index: 0; }
-.hero-tcard-wrap .tcard { position: relative; z-index: 1; }
-
-/* METRICS — dark strip */
-.metrics { display: grid; grid-template-columns: repeat(4,1fr); margin: 0 3rem; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
-.metric { background: var(--t-bg); padding: 1.6rem 1.4rem; border-right: 1px solid var(--t-bdr); transition: background 0.25s; }
-.metric:last-child { border-right: none; }
-.metric:hover { background: var(--t-bg2); }
-.metric-pre { font-family: var(--fmono); font-size: 0.6rem; color: var(--t-mut); letter-spacing: 0.1em; margin-bottom: 0.4rem; }
-.metric-val { font-family: var(--fdisp); font-size: 2.4rem; font-weight: 800; color: var(--t-grn); line-height: 1; margin-bottom: 0.3rem; }
-.metric-val em { font-style: normal; font-size: 1.5rem; }
-.metric-lbl { font-family: var(--fmono); font-size: 0.62rem; color: var(--t-mut); line-height: 1.6; }
 
 /* SECTION BASE */
 section { padding: 5.5rem 3rem; }
@@ -103,74 +85,175 @@ section { padding: 5.5rem 3rem; }
 .sec-title { font-family: var(--fdisp); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; letter-spacing: -0.02em; }
 .sec-line { flex: 1; height: 1.5px; background: var(--border); }
 
-/* ABOUT */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
-.about-lcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
-.about-lcard p { color: var(--muted); font-size: 0.88rem; line-height: 1.9; }
-.about-lcard p + p { margin-top: 1rem; }
-.about-lcard strong { color: var(--text); }
-.stack-row { display: flex; gap: 0.8rem; border-bottom: 1px solid rgba(57,211,83,0.1); padding: 0.6rem 0; font-family: var(--fmono); font-size: 0.72rem; transition: all 0.2s; }
-.stack-row:last-child { border-bottom: none; }
-.stack-row:hover { background: rgba(57,211,83,0.05); padding-left: 0.4rem; }
-.sk { color: var(--t-grn); min-width: 110px; flex-shrink: 0; }
-.sv { color: var(--t-mut); }
-.sv.hi { color: var(--t-grn); }
+/* LIGHT CARD */
+.lcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
 
-/* EXPERIENCE */
-.exp-section { background: var(--bg2); border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
-.exp-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; }
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding: 7rem 3rem 4rem; }
+.hero-eyebrow { font-family: var(--fmono); font-size: 0.7rem; color: var(--green); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+.hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--green); display: block; }
+.hero-name { font-family: var(--fdisp); font-size: clamp(3rem,5.5vw,5rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--text); margin-bottom: 1rem; }
+.hero-name span { color: var(--green); }
+.hero-sub { font-family: var(--fmono); font-size: 0.8rem; color: var(--muted); margin-bottom: 1.8rem; line-height: 1.8; }
+.hero-sub strong { color: var(--text); }
+.hero-ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.hero-tcard-wrap { position: relative; }
+.hero-tcard-wrap::before { content: ''; position: absolute; inset: -14px; background: var(--green-lt); border-radius: 14px; z-index: 0; }
+.hero-tcard-wrap .tcard { position: relative; z-index: 1; }
+
+/* ══════════════════════════════════════════
+   METRICS (dark strip)
+══════════════════════════════════════════ */
+.metrics { display: grid; grid-template-columns: repeat(4,1fr); margin: 0 3rem; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+.metric { background: var(--t-bg); padding: 1.6rem 1.4rem; border-right: 1px solid var(--t-bdr); transition: background 0.25s; }
+.metric:last-child { border-right: none; }
+.metric:hover { background: var(--t-bg2); }
+.metric-pre { font-family: var(--fmono); font-size: 0.6rem; color: var(--t-mut); letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+.metric-val { font-family: var(--fdisp); font-size: 2.2rem; font-weight: 800; color: var(--t-grn); line-height: 1; margin-bottom: 0.3rem; }
+.metric-val em { font-style: normal; font-size: 1.4rem; }
+.metric-lbl { font-family: var(--fmono); font-size: 0.62rem; color: var(--t-mut); line-height: 1.6; }
+
+/* ══════════════════════════════════════════
+   PLATFORM PHILOSOPHY
+══════════════════════════════════════════ */
+.philosophy-section { background: var(--bg); }
+.philosophy-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items: start; }
+.philosophy-text { }
+.philosophy-text p { color: var(--muted); font-size: 0.9rem; line-height: 1.9; margin-bottom: 1.1rem; }
+.philosophy-text p:last-child { margin-bottom: 0; }
+.philosophy-text strong { color: var(--text); }
+.philosophy-text em { color: var(--green); font-style: normal; font-weight: 600; }
+.philosophy-quote { font-family: var(--fdisp); font-size: 1.3rem; font-weight: 700; color: var(--text); border-left: 3px solid var(--green); padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4; }
+/* principles as terminal card */
+.principle-row { display: flex; gap: 0.8rem; border-bottom: 1px solid rgba(57,211,83,0.1); padding: 0.55rem 0; font-family: var(--fmono); font-size: 0.7rem; transition: all 0.2s; }
+.principle-row:last-child { border-bottom: none; }
+.principle-row:hover { padding-left: 0.4rem; background: rgba(57,211,83,0.04); }
+.pk { color: var(--t-grn); min-width: 190px; flex-shrink: 0; }
+.pv { color: var(--t-mut); }
+.pv.on  { color: var(--t-grn); }
+.pv.off { color: var(--t-red); }
+.pv.amb { color: var(--t-amb); }
+
+/* ══════════════════════════════════════════
+   IMPACT STORIES
+══════════════════════════════════════════ */
+.impact-section { background: var(--bg2); border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
+.impact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-bottom: 2.5rem; }
+.impact-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; }
+.impact-card:hover { border-color: var(--green-md); box-shadow: 0 6px 24px rgba(26,122,58,0.09); }
+.impact-card-top { padding: 1.5rem 1.5rem 1rem; border-bottom: 1px solid var(--border); }
+.impact-icon { font-size: 1.6rem; margin-bottom: 0.8rem; display: block; }
+.impact-title { font-family: var(--fdisp); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; line-height: 1.3; }
+.impact-saving { font-family: var(--fmono); font-size: 0.75rem; color: var(--green); font-weight: 600; }
+/* story told as dark terminal card inside light card */
+.impact-term { border-radius: 0; box-shadow: none; }
+.impact-term .tcard-bar { border-radius: 0; }
+.story-line { font-family: var(--fmono); font-size: 0.7rem; line-height: 1.75; margin-bottom: 0.35rem; display: flex; gap: 0.5rem; }
+.story-line:last-child { margin-bottom: 0; }
+.sl-label { color: var(--t-amb); flex-shrink: 0; min-width: 70px; }
+.sl-text { color: var(--t-mut); }
+.sl-text strong { color: var(--t-txt); font-weight: 500; }
+
+/* ══════════════════════════════════════════
+   EXPERIENCE (slimmed - roles only)
+══════════════════════════════════════════ */
+.exp-section { background: var(--bg); border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
+.exp-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; margin-bottom: 0.8rem; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; }
 .exp-card:hover { border-color: var(--green-md); box-shadow: 0 4px 20px rgba(26,122,58,0.07); }
-.exp-hdr { padding: 1.4rem 1.8rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; cursor: pointer; user-select: none; transition: background 0.2s; }
+.exp-hdr { padding: 1.3rem 1.8rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; cursor: pointer; user-select: none; transition: background 0.2s; }
 .exp-hdr:hover { background: var(--green-lt); }
 .exp-meta { font-family: var(--fmono); font-size: 0.65rem; color: var(--green); letter-spacing: 0.08em; margin-bottom: 0.3rem; }
-.exp-role { font-family: var(--fdisp); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
-.exp-co { font-family: var(--fmono); font-size: 0.72rem; color: var(--muted); }
+.exp-role { font-family: var(--fdisp); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+.exp-co { font-family: var(--fmono); font-size: 0.7rem; color: var(--muted); }
 .exp-tog { font-family: var(--fmono); font-size: 0.65rem; color: var(--green); border: 1.5px solid var(--green-md); padding: 0.3rem 0.8rem; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; background: var(--green-lt); transition: all 0.2s; }
 .exp-body { display: none; border-top: 1px solid var(--border); }
 .exp-body.open { display: block; }
 .exp-buls-wrap { border-radius: 0; box-shadow: none; }
 .exp-buls-wrap .tcard-bar { border-radius: 0; }
 .exp-buls { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
-.exp-buls li { font-family: var(--fmono); font-size: 0.74rem; color: var(--t-mut); padding-left: 1.4rem; position: relative; line-height: 1.75; }
+.exp-buls li { font-family: var(--fmono); font-size: 0.73rem; color: var(--t-mut); padding-left: 1.4rem; position: relative; line-height: 1.75; }
 .exp-buls li::before { content: '>'; position: absolute; left: 0; color: var(--t-grn); font-weight: 700; }
 .exp-buls li strong { color: var(--t-txt); font-weight: 500; }
 
-/* AUTOMATIONS */
-.auto-section { background: var(--bg); border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
+/* ══════════════════════════════════════════
+   AUTOMATIONS
+══════════════════════════════════════════ */
+.auto-section { background: var(--bg2); border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
 .auto-intro { font-size: 0.88rem; color: var(--muted); margin-bottom: 2.5rem; max-width: 620px; line-height: 1.8; }
-.auto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.2rem; }
+.auto-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.2rem; }
 .auto-inner { display: flex; gap: 0.9rem; align-items: flex-start; }
 .auto-ic { color: var(--t-grn); flex-shrink: 0; font-size: 0.85rem; margin-top: 2px; }
 .auto-name { font-family: var(--fmono); font-size: 0.74rem; color: var(--t-txt); font-weight: 500; margin-bottom: 0.4rem; }
 .auto-desc { font-family: var(--fmono); font-size: 0.7rem; color: var(--t-mut); line-height: 1.7; }
 
-/* SKILLS */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 1rem; }
-.sk-block .tcard-body { padding: 0.9rem 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+/* ══════════════════════════════════════════
+   CURRENTLY
+══════════════════════════════════════════ */
+.currently-section { background: var(--bg); }
+.currently-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.currently-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; padding: 1.6rem; transition: border-color 0.25s; }
+.currently-card:hover { border-color: var(--green-md); }
+.currently-tag { font-family: var(--fmono); font-size: 0.6rem; color: var(--green); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+.currently-tag::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; display: block; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+.currently-title { font-family: var(--fdisp); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+.currently-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+.currently-desc strong { color: var(--text); }
+
+/* ══════════════════════════════════════════
+   LOOKING FOR
+══════════════════════════════════════════ */
+.looking-section { background: var(--bg2); border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
+.looking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+.looking-prose p { color: var(--muted); font-size: 0.9rem; line-height: 1.9; margin-bottom: 1rem; }
+.looking-prose p:last-child { margin-bottom: 0; }
+.looking-prose strong { color: var(--text); }
+.looking-prose em { color: var(--green); font-style: normal; }
+/* yes/no terminal card */
+.yn-row { display: flex; gap: 0.8rem; border-bottom: 1px solid rgba(57,211,83,0.1); padding: 0.6rem 0; font-family: var(--fmono); font-size: 0.7rem; transition: all 0.2s; }
+.yn-row:last-child { border-bottom: none; }
+.yn-row:hover { padding-left: 0.4rem; background: rgba(57,211,83,0.04); }
+.yk { color: var(--t-mut); flex: 1; }
+.yv { flex-shrink: 0; font-weight: 600; }
+.yv.yes { color: var(--t-grn); }
+.yv.no  { color: var(--t-red); }
+
+/* ══════════════════════════════════════════
+   SKILLS
+══════════════════════════════════════════ */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(230px,1fr)); gap: 1rem; }
 .stag { font-family: var(--fmono); font-size: 0.68rem; padding: 0.25rem 0.6rem; border-radius: 3px; border: 1px solid; transition: filter 0.2s; }
 .stag:hover { filter: brightness(1.25); }
-.stag-blue   { color: #58a6ff; border-color: rgba(88,166,255,0.25);  background: rgba(88,166,255,0.1);  }
-.stag-amber  { color: #f0b429; border-color: rgba(240,180,41,0.25);  background: rgba(240,180,41,0.1);  }
-.stag-green  { color: #39d353; border-color: rgba(57,211,83,0.25);   background: rgba(57,211,83,0.1);   }
-.stag-purple { color: #c792ea; border-color: rgba(199,146,234,0.25); background: rgba(199,146,234,0.1); }
-.stag-red    { color: #ff7b72; border-color: rgba(255,123,114,0.25); background: rgba(255,123,114,0.1); }
-.stag-teal   { color: #39d3c8; border-color: rgba(57,211,200,0.25);  background: rgba(57,211,200,0.1);  }
+.stag-blue   { color:#58a6ff; border-color:rgba(88,166,255,0.25);  background:rgba(88,166,255,0.1);  }
+.stag-amber  { color:#f0b429; border-color:rgba(240,180,41,0.25);  background:rgba(240,180,41,0.1);  }
+.stag-green  { color:#39d353; border-color:rgba(57,211,83,0.25);   background:rgba(57,211,83,0.1);   }
+.stag-purple { color:#c792ea; border-color:rgba(199,146,234,0.25); background:rgba(199,146,234,0.1); }
+.stag-red    { color:#ff7b72; border-color:rgba(255,123,114,0.25); background:rgba(255,123,114,0.1); }
+.stag-teal   { color:#39d3c8; border-color:rgba(57,211,200,0.25);  background:rgba(57,211,200,0.1);  }
 
-/* EDUCATION */
+/* ══════════════════════════════════════════
+   EDUCATION
+══════════════════════════════════════════ */
 .edu-section { background: var(--bg2); border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
 .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-.edu-card .tcard-body { padding: 1.5rem 1.8rem; }
 .edu-deg { font-family: var(--fdisp); font-size: 1rem; font-weight: 700; color: var(--t-txt); margin-bottom: 0.5rem; }
 .edu-sch { font-family: var(--fmono); font-size: 0.72rem; color: var(--t-grn); margin-bottom: 0.4rem; }
 .edu-note { font-family: var(--fmono); font-size: 0.68rem; color: var(--t-mut); line-height: 1.6; }
 
-/* CONTACT */
+/* ══════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════ */
 .contact-section { padding: 5.5rem 3rem; text-align: center; }
 .contact-heading { font-family: var(--fdisp); font-size: clamp(2rem,4vw,3rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.8rem; }
 .contact-heading span { color: var(--green); }
 .contact-sub { font-size: 0.88rem; color: var(--muted); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.8; }
 .contact-twrap { display: inline-block; text-align: left; min-width: 440px; }
-.contact-tcard .tcard-body { padding: 1.4rem 1.8rem; }
 .cl { display: flex; gap: 0.8rem; margin-bottom: 0.45rem; font-size: 0.76rem; font-family: var(--fmono); align-items: center; }
 .ck { color: var(--t-amb); min-width: 90px; flex-shrink: 0; }
 .cv { color: var(--t-txt); }
@@ -182,10 +265,6 @@ section { padding: 5.5rem 3rem; }
 footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: var(--fmono); font-size: 0.68rem; color: var(--muted); }
 .footer-brand { font-family: var(--fdisp); font-size: 1rem; font-weight: 800; color: var(--text); }
 
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
 /* RESPONSIVE */
 @media (max-width: 960px) {
   nav { padding: 0 1.2rem; }
@@ -194,7 +273,9 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
   .metrics { grid-template-columns: 1fr 1fr; margin: 0 1.2rem; }
   .metric { border-bottom: 1px solid var(--t-bdr); }
   section { padding: 3.5rem 1.2rem; }
-  .about-grid { grid-template-columns: 1fr; }
+  .philosophy-grid, .looking-grid, .about-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr; }
+  .currently-grid { grid-template-columns: 1fr; }
   .edu-grid { grid-template-columns: 1fr; }
   .contact-twrap { min-width: unset; width: 100%; }
   footer { flex-direction: column; gap: 0.8rem; text-align: center; }
@@ -211,11 +292,13 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
     <span class="nav-cursor"></span>
   </div>
   <div class="nav-links">
-    <a href="#about">About</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="#impact">Impact</a>
     <a href="#experience">Experience</a>
     <a href="#automations">Automations</a>
     <a href="#skills">Skills</a>
-    <a href="#education">Education</a>
+    <a href="#currently">Currently</a>
+    <a href="#looking">Looking For</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -230,7 +313,7 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
       Platform Engineering &nbsp;·&nbsp; Azure ML &nbsp;·&nbsp; GenAI Workloads
     </div>
     <div class="hero-ctas">
-      <a href="#experience" class="btn btn-green">View Experience ↓</a>
+      <a href="#impact" class="btn btn-green">See My Impact ↓</a>
       <a href="https://www.linkedin.com/in/raja-himakar" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
     </div>
   </div>
@@ -243,11 +326,11 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
       </div>
       <div class="tcard-body">
         <div class="tl a"><span class="tp">$</span><span class="tc">whoami</span></div>
-        <div class="tl a"><span class="to">Data Science Engineer <span class="tv">|</span> MLOps <span class="tv">|</span> ML Engineer <span class="tv">|</span> Platform Eng</span></div>
-        <div class="tl a"><span class="tp">$</span><span class="tc">cat stack.txt</span></div>
-        <div class="tl a"><span class="to">Azure ML <span class="tv">·</span> Terraform <span class="tv">·</span> Python <span class="tv">·</span> R <span class="tv">·</span> Databricks</span></div>
+        <div class="tl a"><span class="to">Raja Himakar <span class="tv">// Data Science Engineer · MLOps · ML Engineer</span></span></div>
+        <div class="tl a"><span class="tp">$</span><span class="tc">cat platform_philosophy.txt</span></div>
+        <div class="tl a"><span class="to"><span class="tv">"</span>Reliability is not a feature. It's the foundation.<span class="tv">"</span></span></div>
         <div class="tl a"><span class="tp">$</span><span class="tc">cat impact.txt</span></div>
-        <div class="tl a"><span class="to">60+ apps <span class="tv">|</span> 70+ data scientists <span class="tv">|</span> 4+ yrs prod ML</span></div>
+        <div class="tl a"><span class="to">$70k+ saved <span class="tv">|</span> 60+ apps <span class="tv">|</span> 70+ data scientists <span class="tv">|</span> 4+ yrs</span></div>
         <div class="tl a"><span class="tp">$</span><span class="tc">cat status.txt</span></div>
         <div class="tl a"><span class="tcm"># open to Senior MLOps · ML Engineer · Platform Eng roles</span></div>
       </div>
@@ -257,6 +340,11 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
 
 <!-- ══════════ METRICS ══════════ -->
 <div class="metrics">
+  <div class="metric reveal">
+    <div class="metric-pre">// cost_savings_delivered</div>
+    <div class="metric-val">$70k<em>+</em></div>
+    <div class="metric-lbl">Annual platform cost savings identified &amp; delivered</div>
+  </div>
   <div class="metric reveal">
     <div class="metric-pre">// platform_scale</div>
     <div class="metric-val">60<em>+</em></div>
@@ -268,55 +356,130 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
     <div class="metric-lbl">Data Scientists on enterprise ML platform</div>
   </div>
   <div class="metric reveal">
-    <div class="metric-pre">// platform_requests</div>
-    <div class="metric-val">1,130</div>
-    <div class="metric-lbl">Platform feature &amp; service requests handled last FY</div>
-  </div>
-  <div class="metric reveal">
-    <div class="metric-pre">// years_in_prod</div>
-    <div class="metric-val">4<em>+</em></div>
-    <div class="metric-lbl">Years in production ML environments</div>
+    <div class="metric-pre">// requests_handled</div>
+    <div class="metric-val">497</div>
+    <div class="metric-lbl">Platform requests personally resolved last FY</div>
   </div>
 </div>
 
-<!-- ══════════ ABOUT ══════════ -->
-<section id="about">
+<!-- ══════════ PLATFORM PHILOSOPHY ══════════ -->
+<section id="philosophy" class="philosophy-section">
   <div class="sec-hd">
     <span class="sec-num">01</span>
-    <h2 class="sec-title">About</h2>
+    <h2 class="sec-title">Platform Philosophy</h2>
     <div class="sec-line"></div>
   </div>
-  <div class="about-grid">
-    <div class="about-lcard reveal">
-      <p>I am a <strong>Data Science Engineer</strong> operating at the intersection of MLOps, ML Engineering, and cloud platform engineering. My focus is building and sustaining production-grade ML ecosystems that scale reliably across large enterprise environments.</p>
-      <p>I have delivered end-to-end platform engineering across <strong>Azure ML, Azure Cloud Services, and on-premises</strong> infrastructure — including high-availability GenAI workloads and regulated ML applications in the retail sector. Reliability, observability, and automation are central to how I work.</p>
-      <p>My DevOps roots at <strong>Tata Consultancy Services</strong> working on Comcast's infrastructure gave me a deep foundation in automation, zero-downtime deployments, and infrastructure-as-code — practices I carry into every ML platform challenge today.</p>
+  <div class="philosophy-grid">
+    <div class="philosophy-text reveal">
+      <div class="philosophy-quote">"Reliability is not a feature you add later. It's the foundation everything else is built on."</div>
+      <p>When ChatGPT launched, it went down under load because scale was an afterthought. When AWS had its 2023 outage, Australian banks went offline. When Optus failed, millions of people lost connectivity. These weren't bad engineers — they were systems where <strong>speed to market won the argument against reliability</strong>, and the ceiling was hit hard when it mattered most.</p>
+      <p>I've built and operated ML platforms where 70+ data scientists depend on the infrastructure working — not eventually, not mostly, but <em>consistently</em>. That shapes how I think about every deployment, every pipeline, every configuration change. <strong>Auto-restart, structured logging, proactive monitoring, and alerting aren't nice-to-haves</strong> — they're the first things I design in, not the last things I bolt on.</p>
+      <p>Cost is also a reliability problem. A platform burning budget on unused resources is a platform that eventually gets defunded. I treat <strong>cost hygiene as platform health</strong> — finding waste before it becomes a problem is the same discipline as finding vulnerabilities before they become incidents.</p>
     </div>
     <div class="reveal">
       <div class="tcard">
         <div class="tcard-bar">
           <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
-          <span class="lbl">stack.json</span>
+          <span class="lbl">platform_principles.json</span>
         </div>
         <div class="tcard-body" style="padding:1.2rem 1.5rem;">
-          <div class="stack-row"><span class="sk">role_type:</span><span class="sv">MLOps · ML Engineer · Platform Eng</span></div>
-          <div class="stack-row"><span class="sk">cloud:</span><span class="sv">Azure · AWS · On-Prem</span></div>
-          <div class="stack-row"><span class="sk">languages:</span><span class="sv">Python · R · Shell · SQL</span></div>
-          <div class="stack-row"><span class="sk">iac:</span><span class="sv">Terraform · Azure DevOps</span></div>
-          <div class="stack-row"><span class="sk">containers:</span><span class="sv">Docker · CI/CD Pipelines</span></div>
-          <div class="stack-row"><span class="sk">observability:</span><span class="sv">Splunk · Nagios · Azure Monitor</span></div>
-          <div class="stack-row"><span class="sk">ml_platform:</span><span class="sv">Azure ML · Databricks · Snowflake</span></div>
-          <div class="stack-row"><span class="sk">open_to:</span><span class="sv hi">Senior MLOps · ML Engineer · Platform Eng</span></div>
+          <div class="principle-row"><span class="pk">reliability_over_speed:</span><span class="pv on">true</span></div>
+          <div class="principle-row"><span class="pk">observability_first:</span><span class="pv on">true</span></div>
+          <div class="principle-row"><span class="pk">proactive_monitoring:</span><span class="pv on">true</span></div>
+          <div class="principle-row"><span class="pk">auto_restart_enabled:</span><span class="pv on">true</span></div>
+          <div class="principle-row"><span class="pk">cost_hygiene:</span><span class="pv on">continuous</span></div>
+          <div class="principle-row"><span class="pk">security_posture:</span><span class="pv amb">proactive_not_reactive</span></div>
+          <div class="principle-row"><span class="pk">deploy_without_hardening:</span><span class="pv off">false</span></div>
+          <div class="principle-row"><span class="pk">manual_toil_tolerance:</span><span class="pv off">zero</span></div>
+          <div class="principle-row"><span class="pk">ethical_engineering:</span><span class="pv on">non_negotiable</span></div>
+          <div class="principle-row"><span class="pk">wait_to_be_assigned_work:</span><span class="pv off">never</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════ IMPACT STORIES ══════════ -->
+<section id="impact" class="impact-section">
+  <div class="sec-hd">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Impact Stories</h2>
+    <div class="sec-line"></div>
+  </div>
+  <p style="font-size:0.88rem;color:var(--muted);max-width:600px;margin-bottom:2.5rem;line-height:1.8;">Real problems. Real decisions. Real outcomes. Not a list of responsibilities — a record of judgment in action.</p>
+
+  <div class="impact-grid">
+
+    <!-- Story 1: Cost Hunt -->
+    <div class="impact-card reveal">
+      <div class="impact-card-top">
+        <span class="impact-icon">💰</span>
+        <div class="impact-title">The $70k Cost Hunt</div>
+        <div class="impact-saving">~$70,000+ annual savings delivered</div>
+      </div>
+      <div class="tcard impact-term">
+        <div class="tcard-bar" style="border-radius:0;">
+          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+          <span class="lbl">cost_investigation.sh</span>
+        </div>
+        <div class="tcard-body" style="padding:1.1rem 1.3rem;">
+          <div class="story-line"><span class="sl-label">situation:</span><span class="sl-text">Platform resources were accumulating silently — <strong>nobody was tracking what was still needed vs what was just running.</strong></span></div>
+          <div class="story-line"><span class="sl-label">action:</span><span class="sl-text">Proactively audited the full platform estate — no ticket, no ask. Found unused PostgreSQL DBs, dead RConnect servers, oversized Snowflake warehouses, stale disks and VMs.</span></div>
+          <div class="story-line"><span class="sl-label">outcome:</span><span class="sl-text"><strong>$20k/yr</strong> from unused PG databases · <strong>$3.6k/yr</strong> from decommissioned RConnect · <strong>$14.6k/yr</strong> from Snowflake right-sizing · <strong>$25–36k/yr</strong> from Data Lifecycle Service enablement.</span></div>
+          <div class="story-line"><span class="sl-label">recognition:</span><span class="sl-text">Reported to management. Directly contributed to a <strong>high performance review score.</strong></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Story 2: Vulnerability -->
+    <div class="impact-card reveal">
+      <div class="impact-card-top">
+        <span class="impact-icon">🔒</span>
+        <div class="impact-title">The Vulnerability That Didn't Need a Revamp</div>
+        <div class="impact-saving">3–4 months of infrastructure work avoided</div>
+      </div>
+      <div class="tcard impact-term">
+        <div class="tcard-bar" style="border-radius:0;">
+          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+          <span class="lbl">vuln_remediation.sh</span>
+        </div>
+        <div class="tcard-body" style="padding:1.1rem 1.3rem;">
+          <div class="story-line"><span class="sl-label">situation:</span><span class="sl-text">A <strong>high-severity vulnerability</strong> was flagged that would require a full infrastructure revamp — upgrading R versions, all underlying software, estimated 3–4 months of work.</span></div>
+          <div class="story-line"><span class="sl-label">action:</span><span class="sl-text">Instead of accepting the full revamp as the only path, investigated the vulnerability root cause and <strong>patched the insecure package directly</strong> — neutralising the threat without touching the underlying infrastructure.</span></div>
+          <div class="story-line"><span class="sl-label">outcome:</span><span class="sl-text">High-severity vulnerability resolved. <strong>Full infrastructure revamp avoided.</strong> Team kept momentum on product delivery instead of months of platform rebuilding.</span></div>
+          <div class="story-line"><span class="sl-label">lesson:</span><span class="sl-text">The first proposed solution is rarely the only solution. <strong>Judgment over process.</strong></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Story 3: Platform at Scale -->
+    <div class="impact-card reveal">
+      <div class="impact-card-top">
+        <span class="impact-icon">🏗️</span>
+        <div class="impact-title">Keeping 60+ Apps Alive for 70+ Scientists</div>
+        <div class="impact-saving">497 platform requests · 4+ years production ML</div>
+      </div>
+      <div class="tcard impact-term">
+        <div class="tcard-bar" style="border-radius:0;">
+          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+          <span class="lbl">platform_ops.sh</span>
+        </div>
+        <div class="tcard-body" style="padding:1.1rem 1.3rem;">
+          <div class="story-line"><span class="sl-label">situation:</span><span class="sl-text">An in-house ML platform built on Azure services, internal packages, and custom components — <strong>60+ live applications, 70+ data scientists depending on it daily.</strong></span></div>
+          <div class="story-line"><span class="sl-label">approach:</span><span class="sl-text">Built reliability in from the start — CI/CD pipelines, Azure Monitor alerting, shell-based health checks, structured logging, proactive security hardening across all layers.</span></div>
+          <div class="story-line"><span class="sl-label">outcome:</span><span class="sl-text">Handled <strong>497 platform feature and service requests</strong> last FY. Platform maintained GenAI and regulated ML workloads in a production retail environment without major incidents.</span></div>
+          <div class="story-line"><span class="sl-label">mindset:</span><span class="sl-text"><strong>The platform is the product.</strong> Data scientists shipping models is the output. My job is making sure nothing gets in their way.</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ══════════ EXPERIENCE ══════════ -->
 <section id="experience" class="exp-section">
   <div class="sec-hd">
-    <span class="sec-num">02</span>
+    <span class="sec-num">03</span>
     <h2 class="sec-title">Experience</h2>
     <div class="sec-line"></div>
   </div>
@@ -332,18 +495,14 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
     </div>
     <div class="exp-body open">
       <div class="tcard exp-buls-wrap">
-        <div class="tcard-bar" style="border-radius:0;">
-          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
-          <span class="lbl">responsibilities.sh</span>
-        </div>
+        <div class="tcard-bar" style="border-radius:0;"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">responsibilities.sh</span></div>
         <div class="tcard-body">
           <ul class="exp-buls">
             <li>Operated and maintained a <strong>production ML platform</strong> hosting 60+ applications across Azure ML, Azure Cloud Services, and on-premises — serving a community of 70+ data scientists.</li>
-            <li>Managed <strong>Azure ML and GenAI workloads</strong> including high-availability, security-sensitive applications in a regulated retail environment — ensuring platform reliability and feature continuity.</li>
-            <li>Primary platform engineer for an <strong>in-house ML platform</strong> built on Azure services, internal packages, and custom components — handling 1,130+ platform feature and service requests from data scientists last FY.</li>
-            <li>Enforced <strong>security-first platform engineering</strong>: vulnerability remediation, compliance governance, and proactive risk reduction across all infrastructure layers.</li>
-            <li>Drove <strong>ML platform adoption</strong> by collaborating cross-functionally to improve usability, production readiness, and developer experience for data science teams.</li>
-            <li>Maintained <strong>R Shiny applications</strong> for interactive analytics and business-facing dashboards enabling data-driven decisions across the enterprise.</li>
+            <li>Managed <strong>Azure ML and GenAI workloads</strong> in a regulated retail environment — ensuring platform reliability, security compliance, and feature continuity.</li>
+            <li>Delivered <strong>$70k+ in annual cost savings</strong> through proactive platform audits — identifying unused resources, right-sizing infrastructure, and enabling cost-efficient platform features.</li>
+            <li>Remediated a <strong>high-severity vulnerability</strong> via targeted package patching — avoiding a 3–4 month full infrastructure revamp.</li>
+            <li>Maintained <strong>R Shiny applications</strong> for interactive analytics and business-facing dashboards.</li>
           </ul>
         </div>
       </div>
@@ -361,18 +520,13 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
     </div>
     <div class="exp-body">
       <div class="tcard exp-buls-wrap">
-        <div class="tcard-bar" style="border-radius:0;">
-          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
-          <span class="lbl">responsibilities.sh</span>
-        </div>
+        <div class="tcard-bar" style="border-radius:0;"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">responsibilities.sh</span></div>
         <div class="tcard-body">
           <ul class="exp-buls">
-            <li>Developed and continuously upgraded <strong>Azure DevOps infrastructure pipelines</strong> to accommodate evolving platform and business requirements.</li>
-            <li>Built scalable <strong>Azure and R-based products</strong> using containerisation and CI/CD — migrating legacy on-premises services to Azure Cloud.</li>
-            <li>Established <strong>alerting and monitoring frameworks</strong> to proactively detect and reduce application downtime across the ML platform estate.</li>
-            <li>Built <strong>Shiny dashboards</strong> to surface infrastructure performance metrics and cloud cost visibility to stakeholders.</li>
-            <li>Constructed <strong>data pipelines and interfaces</strong> for new ML projects to consume data and generate automated forecasts at scale.</li>
-            <li>Performed structured platform operations: log analysis, performance tuning, patch management, incident response, and postmortems.</li>
+            <li>Developed and maintained <strong>Azure DevOps infrastructure pipelines</strong> supporting evolving platform requirements.</li>
+            <li>Built scalable <strong>Azure and R-based products</strong> via containerisation and CI/CD — migrating legacy on-premises services to Azure Cloud.</li>
+            <li>Established <strong>alerting and monitoring frameworks</strong> to proactively detect and reduce application downtime.</li>
+            <li>Constructed <strong>automated data pipelines</strong> enabling ML teams to consume data and trigger forecast generation at scale.</li>
           </ul>
         </div>
       </div>
@@ -384,21 +538,17 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
       <div>
         <div class="exp-meta">8 MONTHS · MELBOURNE, AU</div>
         <div class="exp-role">Data Analyst</div>
-        <div class="exp-co">The Financial Fox — Australian Startup Ecosystem Analytics</div>
+        <div class="exp-co">The Financial Fox — Australian Startup Ecosystem</div>
       </div>
       <div class="exp-tog"><span>+</span> expand</div>
     </div>
     <div class="exp-body">
       <div class="tcard exp-buls-wrap">
-        <div class="tcard-bar" style="border-radius:0;">
-          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
-          <span class="lbl">responsibilities.sh</span>
-        </div>
+        <div class="tcard-bar" style="border-radius:0;"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">responsibilities.sh</span></div>
         <div class="tcard-body">
           <ul class="exp-buls">
-            <li>Analysed historical and current data to surface trends and insights for the Australian startup ecosystem within a <strong>30+ analyst collaborative team</strong>.</li>
-            <li>Built data-driven <strong>predictive models in R and Python</strong>, communicating findings through visual reports to management.</li>
-            <li>Produced visualisations and reports using R, Python, SQL, and Infogram across multiple business domains.</li>
+            <li>Analysed startup ecosystem data within a <strong>30+ analyst team</strong> — surfacing trends and insights for management.</li>
+            <li>Built <strong>predictive models in R and Python</strong>, producing visual reports and dashboards across multiple business domains.</li>
           </ul>
         </div>
       </div>
@@ -416,17 +566,13 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
     </div>
     <div class="exp-body">
       <div class="tcard exp-buls-wrap">
-        <div class="tcard-bar" style="border-radius:0;">
-          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
-          <span class="lbl">responsibilities.sh</span>
-        </div>
+        <div class="tcard-bar" style="border-radius:0;"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">responsibilities.sh</span></div>
         <div class="tcard-body">
           <ul class="exp-buls">
-            <li>Led <strong>cloud migration projects</strong> transitioning legacy IT systems to AWS and PCF cloud infrastructure at enterprise scale.</li>
-            <li>Achieved <strong>100% deployment success rate</strong> using GoCD, JBoss, and WebLogic for continuous delivery of enterprise applications.</li>
-            <li>Configured <strong>Nagios, AppDynamics, Splunk, and Zabbix</strong> for comprehensive production monitoring and alerting coverage.</li>
-            <li>Automated infrastructure maintenance using <strong>Ansible, Shell Scripting, and Python</strong> — eliminating manual Linux server operations at scale.</li>
-            <li>Built <strong>operational dashboards</strong> in Splunk and AppDynamics for real-time production system visibility.</li>
+            <li>Led <strong>cloud migration</strong> of legacy systems to AWS and PCF at enterprise scale.</li>
+            <li>Achieved <strong>100% deployment success rate</strong> using GoCD, JBoss, and WebLogic for continuous delivery.</li>
+            <li>Configured <strong>Nagios, AppDynamics, Splunk, and Zabbix</strong> for comprehensive production monitoring.</li>
+            <li>Automated infrastructure operations using <strong>Ansible, Shell, and Python</strong> — eliminating manual Linux server tasks at scale.</li>
           </ul>
         </div>
       </div>
@@ -437,133 +583,108 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
 <!-- ══════════ AUTOMATIONS ══════════ -->
 <section id="automations" class="auto-section">
   <div class="sec-hd">
-    <span class="sec-num">03</span>
+    <span class="sec-num">04</span>
     <h2 class="sec-title">Automations</h2>
     <div class="sec-line"></div>
   </div>
-  <p class="auto-intro">A selection of automation solutions delivered across production ML and cloud platform environments — reducing manual toil, improving reliability, and enabling teams to move faster.</p>
+  <p class="auto-intro">Automation is how I scale myself. Every recurring manual task is a bug to be fixed. These are some of the solutions I've shipped to reduce toil, improve reliability, and give the team time back.</p>
   <div class="auto-grid">
-
     <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">cicd_pipeline_automation.sh</span></div>
       <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner">
-          <span class="auto-ic">⚡</span>
-          <div>
-            <div class="auto-name">Azure DevOps CI/CD Pipeline Automation</div>
-            <div class="auto-desc">Designed and maintained CI/CD pipelines that orchestrate Linux shell scripts for environment provisioning, validation gates, and multi-environment ML deployments — eliminating manual release steps and enabling fully repeatable deployments at scale.</div>
-          </div>
-        </div>
+        <div class="auto-inner"><span class="auto-ic">⚡</span><div>
+          <div class="auto-name">Azure DevOps CI/CD Pipeline Automation</div>
+          <div class="auto-desc">Pipelines that orchestrate Linux shell scripts for environment provisioning, validation gates, and multi-environment ML deployments — eliminating manual release steps across 60+ applications.</div>
+        </div></div>
       </div>
     </div>
-
     <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">azure_monitor_alerting.py</span></div>
       <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner">
-          <span class="auto-ic">🔔</span>
-          <div>
-            <div class="auto-name">Azure Monitor Alerting &amp; Observability Pipelines</div>
-            <div class="auto-desc">Built proactive monitoring and alerting pipelines in Azure Portal covering application health, resource thresholds, and ML job failures — reducing mean time to detect (MTTD) and enabling pre-emptive incident response across 60+ applications.</div>
-          </div>
-        </div>
+        <div class="auto-inner"><span class="auto-ic">🔔</span><div>
+          <div class="auto-name">Azure Monitor Alerting &amp; Observability Pipelines</div>
+          <div class="auto-desc">Proactive monitoring pipelines covering app health, resource thresholds, and ML job failures — reducing mean time to detect before users are impacted.</div>
+        </div></div>
       </div>
     </div>
-
     <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">platform_toil_reduction.sh</span></div>
       <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner">
-          <span class="auto-ic">🖥️</span>
-          <div>
-            <div class="auto-name">Shell Scripting for Platform Toil Reduction</div>
-            <div class="auto-desc">Developed shell scripts to automate recurring platform operations — log cleanup, resource stats collection, environment health checks, and scheduled hygiene tasks — significantly reducing manual operational overhead across the ML estate.</div>
-          </div>
-        </div>
+        <div class="auto-inner"><span class="auto-ic">🖥️</span><div>
+          <div class="auto-name">Shell Scripting for Platform Toil Reduction</div>
+          <div class="auto-desc">Scripts automating log cleanup, resource stats collection, environment health checks, and hygiene tasks — eliminating a class of recurring manual work entirely.</div>
+        </div></div>
       </div>
     </div>
-
     <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">ansible_infra_automation.yml</span></div>
       <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner">
-          <span class="auto-ic">🤖</span>
-          <div>
-            <div class="auto-name">Ansible-Based Infrastructure Automation</div>
-            <div class="auto-desc">Automated Linux server maintenance, software updates, and IS maintenance tasks across production environments using Ansible — eliminating manual intervention and enforcing consistent configuration state across infrastructure fleets.</div>
-          </div>
-        </div>
+        <div class="auto-inner"><span class="auto-ic">🤖</span><div>
+          <div class="auto-name">Ansible-Based Infrastructure Automation</div>
+          <div class="auto-desc">Automated Linux server maintenance, software updates, and configuration management — enforcing consistent state across infrastructure without manual intervention.</div>
+        </div></div>
       </div>
     </div>
-
     <div class="tcard reveal">
-      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">cost_perf_dashboard.R</span></div>
+      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">cost_audit.sh</span></div>
       <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner">
-          <span class="auto-ic">📊</span>
-          <div>
-            <div class="auto-name">Automated Infrastructure &amp; Cost Dashboards</div>
-            <div class="auto-desc">Built R Shiny dashboards that automatically surface infrastructure performance metrics and cloud cost data — giving platform and business stakeholders real-time operational visibility without manual reporting overhead.</div>
-          </div>
-        </div>
+        <div class="auto-inner"><span class="auto-ic">💰</span><div>
+          <div class="auto-name">Automated Cost &amp; Usage Extraction Scripts</div>
+          <div class="auto-desc">Scripts to extract current resource usage and surface cost anomalies across the platform estate — the tooling behind $70k+ in identified annual savings.</div>
+        </div></div>
       </div>
     </div>
-
     <div class="tcard reveal">
-      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">data_pipeline_automation.py</span></div>
+      <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">ml_health_agent.py</span></div>
       <div class="tcard-body" style="padding:1.2rem 1.4rem;">
-        <div class="auto-inner">
-          <span class="auto-ic">🔁</span>
-          <div>
-            <div class="auto-name">ML Data Pipeline Automation</div>
-            <div class="auto-desc">Constructed automated data pipelines and interfaces for new ML projects — enabling data science teams to consume data feeds and trigger automated forecast generation without manual engineering intervention for each new use case.</div>
-          </div>
-        </div>
+        <div class="auto-inner"><span class="auto-ic">🧠</span><div>
+          <div class="auto-name">ML Platform Health Agent <span style="color:var(--t-grn);font-size:0.65rem;">NEW</span></div>
+          <div class="auto-desc">Agentic AI system that collects from Azure ML, Azure Monitor, Jira, and shell checks — then uses Claude to synthesise a plain-English health report delivered via Email and Teams daily.</div>
+        </div></div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- ══════════ SKILLS ══════════ -->
 <section id="skills">
   <div class="sec-hd">
-    <span class="sec-num">04</span>
+    <span class="sec-num">05</span>
     <h2 class="sec-title">Skills</h2>
     <div class="sec-line"></div>
   </div>
   <div class="skills-grid">
-    <div class="sk-block tcard reveal">
+    <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">Cloud &amp; ML Platforms</span></div>
       <div class="tcard-body" style="padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
         <span class="stag stag-blue">Azure ML</span><span class="stag stag-blue">Azure Databricks</span><span class="stag stag-blue">Microsoft Azure</span><span class="stag stag-blue">Snowflake</span><span class="stag stag-blue">AWS</span><span class="stag stag-blue">GenAI Workloads</span>
       </div>
     </div>
-    <div class="sk-block tcard reveal">
+    <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">DevOps &amp; Infra</span></div>
       <div class="tcard-body" style="padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
         <span class="stag stag-amber">Azure DevOps</span><span class="stag stag-amber">Terraform</span><span class="stag stag-amber">Docker</span><span class="stag stag-amber">CI/CD</span><span class="stag stag-amber">Ansible</span><span class="stag stag-amber">Linux</span><span class="stag stag-amber">Shell Scripting</span>
       </div>
     </div>
-    <div class="sk-block tcard reveal">
+    <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">Languages</span></div>
       <div class="tcard-body" style="padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
         <span class="stag stag-green">Python</span><span class="stag stag-green">R</span><span class="stag stag-green">SQL</span><span class="stag stag-green">MySQL</span><span class="stag stag-green">R Shiny</span><span class="stag stag-green">Shell</span>
       </div>
     </div>
-    <div class="sk-block tcard reveal">
+    <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">ML &amp; Data Science</span></div>
       <div class="tcard-body" style="padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
         <span class="stag stag-purple">MLOps</span><span class="stag stag-purple">Machine Learning</span><span class="stag stag-purple">Predictive Modeling</span><span class="stag stag-purple">NLP</span><span class="stag stag-purple">Data Science</span>
       </div>
     </div>
-    <div class="sk-block tcard reveal">
+    <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">Observability</span></div>
       <div class="tcard-body" style="padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
         <span class="stag stag-red">Splunk</span><span class="stag stag-red">Nagios</span><span class="stag stag-red">AppDynamics</span><span class="stag stag-red">Zabbix</span><span class="stag stag-red">Azure Monitor</span>
       </div>
     </div>
-    <div class="sk-block tcard reveal">
+    <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">Visualisation &amp; BI</span></div>
       <div class="tcard-body" style="padding:0.9rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
         <span class="stag stag-teal">Tableau</span><span class="stag stag-teal">Power BI</span><span class="stag stag-teal">R Shiny</span><span class="stag stag-teal">Business Intelligence</span>
@@ -572,15 +693,83 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
   </div>
 </section>
 
+<!-- ══════════ CURRENTLY ══════════ -->
+<section id="currently" class="currently-section">
+  <div class="sec-hd">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">Currently</h2>
+    <div class="sec-line"></div>
+  </div>
+  <p style="font-size:0.88rem;color:var(--muted);max-width:560px;margin-bottom:2.5rem;line-height:1.8;">What I'm building, learning, and thinking about right now.</p>
+  <div class="currently-grid">
+    <div class="currently-card reveal">
+      <div class="currently-tag">Learning</div>
+      <div class="currently-title">Azure AI Engineer Certification</div>
+      <div class="currently-desc">Deepening my understanding of <strong>Azure AI services, Cognitive Services, and applied ML in the Azure ecosystem</strong> — formalising what I've been doing in practice for years with a recognised certification.</div>
+    </div>
+    <div class="currently-card reveal">
+      <div class="currently-tag">Building</div>
+      <div class="currently-title">ML Platform Health Agent</div>
+      <div class="currently-desc">An <strong>agentic AI system</strong> that monitors Azure ML, Azure Monitor, Jira, and custom shell checks — then uses Claude to produce a plain-English daily health report. Delivered via Email and Teams on a schedule.</div>
+    </div>
+    <div class="currently-card reveal">
+      <div class="currently-tag">Exploring</div>
+      <div class="currently-title">Agentic AI &amp; Claude / OpenAI Agents</div>
+      <div class="currently-desc">Playing with <strong>agentic patterns, tool use, and multi-step reasoning</strong> — particularly how LLM agents can be applied to platform operations, not just chat interfaces. The next evolution of ML platform tooling.</div>
+    </div>
+    <div class="currently-card reveal">
+      <div class="currently-tag">Thinking About</div>
+      <div class="currently-title">ML Platforms for Nonprofits</div>
+      <div class="currently-desc">Exploring how <strong>enterprise ML platform practices can be applied to organisations doing social good</strong> — where engineering resources are scarce but the impact of getting it right is significant.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LOOKING FOR ══════════ -->
+<section id="looking" class="looking-section">
+  <div class="sec-hd">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">What I'm Looking For</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="looking-grid">
+    <div class="looking-prose reveal">
+      <p>I'm not looking for a job. I'm looking for a <strong>problem worth solving</strong> — one where the platform I build or operate has a visible effect on people, products, or outcomes that matter.</p>
+      <p>The work that energises me is work where <em>I can see the impact</em>. Not just metrics going up — but a data scientist shipping a model that changes a real decision, a cost saving that funds something meaningful, a vulnerability caught before it became a crisis. That's the KICK.</p>
+      <p>I want to join a team that treats the <strong>ML platform as a product</strong>, not a utility. Where reliability engineering is respected, not rushed. Where I'm trusted to find the work, not just execute a backlog.</p>
+      <p>I'm also <strong>genuinely open to working with nonprofits and organisations doing social good</strong> — I believe good engineering should create good outcomes, not just profitable ones.</p>
+    </div>
+    <div class="reveal">
+      <div class="tcard">
+        <div class="tcard-bar">
+          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+          <span class="lbl">ideal_role.json</span>
+        </div>
+        <div class="tcard-body" style="padding:1.2rem 1.5rem;">
+          <div class="yn-row"><span class="yk">ML platform treated as a product</span><span class="yv yes">✓ yes</span></div>
+          <div class="yn-row"><span class="yk">Reliability-first engineering culture</span><span class="yv yes">✓ yes</span></div>
+          <div class="yn-row"><span class="yk">Autonomy to find &amp; create work</span><span class="yv yes">✓ yes</span></div>
+          <div class="yn-row"><span class="yk">Visible impact on real users</span><span class="yv yes">✓ yes</span></div>
+          <div class="yn-row"><span class="yk">Ethical engineering culture</span><span class="yv yes">✓ yes</span></div>
+          <div class="yn-row"><span class="yk">Open to nonprofit / social good orgs</span><span class="yv yes">✓ yes</span></div>
+          <div class="yn-row"><span class="yk">Pure ticket-queue execution role</span><span class="yv no">✗ no</span></div>
+          <div class="yn-row"><span class="yk">Speed over reliability culture</span><span class="yv no">✗ no</span></div>
+          <div class="yn-row"><span class="yk">Platform as afterthought</span><span class="yv no">✗ no</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ EDUCATION ══════════ -->
 <section id="education" class="edu-section">
   <div class="sec-hd">
-    <span class="sec-num">05</span>
+    <span class="sec-num">08</span>
     <h2 class="sec-title">Education</h2>
     <div class="sec-line"></div>
   </div>
   <div class="edu-grid">
-    <div class="edu-card tcard reveal">
+    <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">masters.json</span></div>
       <div class="tcard-body" style="padding:1.5rem 1.8rem;">
         <div class="edu-deg">Master of Data Science</div>
@@ -588,7 +777,7 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
         <div class="edu-note">Advanced studies in machine learning, statistical modelling, and data engineering</div>
       </div>
     </div>
-    <div class="edu-card tcard reveal">
+    <div class="tcard reveal">
       <div class="tcard-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="lbl">bachelors.json</span></div>
       <div class="tcard-body" style="padding:1.5rem 1.8rem;">
         <div class="edu-deg">Bachelor of Electronics &amp; Communications Engineering</div>
@@ -602,9 +791,9 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
 <!-- ══════════ CONTACT ══════════ -->
 <section id="contact" class="contact-section">
   <h2 class="contact-heading reveal">Let's <span>Connect</span></h2>
-  <p class="contact-sub reveal">Open to Senior MLOps, ML Engineer, Platform Engineering, and Data Science Engineering roles in Melbourne and beyond.</p>
+  <p class="contact-sub reveal">Open to Senior MLOps, ML Engineer, Platform Engineering, and Data Science Engineering roles in Melbourne and beyond. Nonprofits and social-good organisations welcome.</p>
   <div class="contact-twrap reveal">
-    <div class="contact-tcard tcard">
+    <div class="tcard">
       <div class="tcard-bar">
         <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
         <span class="lbl">connect.sh</span>
