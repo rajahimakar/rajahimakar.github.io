@@ -88,9 +88,11 @@ section { padding: 5.5rem 3rem; }
 /* LIGHT CARD */
 .lcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
 
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* REVEAL — content always visible; animation is progressive enhancement */
+.reveal { opacity: 1; transform: translateY(0); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.will-animate { opacity: 0; transform: translateY(22px); }
+.flip-wrap.will-animate { opacity: 0; transform: none; }
+.reveal.visible { opacity: 1 !important; transform: translateY(0) !important; }
 
 /* ══════════════════════════════════════════
    HERO
@@ -241,11 +243,13 @@ section { padding: 5.5rem 3rem; }
 /* ══════════════════════════════════════════
    FLIP CARDS — automations
 ══════════════════════════════════════════ */
-.flip-wrap { perspective: 1000px; height: 200px; cursor: pointer; }
-.flip-wrap:hover .flip-inner { transform: rotateY(180deg); }
+.auto-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.2rem; }
+.flip-wrap { perspective: 1000px; height: 210px; cursor: pointer; }
+.flip-wrap.reveal { transform: none; }
+.flip-wrap.reveal.visible { transform: none; }
 .flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1); transform-style: preserve-3d; }
+.flip-wrap:hover .flip-inner { transform: rotateY(180deg); }
 .flip-front, .flip-back { position: absolute; inset: 0; border-radius: 8px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.18); }
-/* FRONT — dark terminal style */
 .flip-front { background: var(--t-bg); display: flex; flex-direction: column; }
 .flip-front-bar { background: var(--t-surf); padding: 0.55rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--t-bdr); flex-shrink: 0; }
 .flip-front-bar .lbl { font-family: var(--fmono); font-size: 0.62rem; color: #8fba9f; margin-left: 0.4rem; letter-spacing: 0.05em; }
@@ -253,7 +257,6 @@ section { padding: 5.5rem 3rem; }
 .flip-ic { font-size: 1.5rem; flex-shrink: 0; }
 .flip-title { font-family: var(--fmono); font-size: 0.78rem; color: #d4e8da; font-weight: 500; line-height: 1.5; }
 .flip-hint { font-family: var(--fmono); font-size: 0.6rem; color: var(--t-mut); margin-top: 0.5rem; }
-/* BACK — green-tinted dark */
 .flip-back { background: #0a1f12; border: 1.5px solid rgba(57,211,83,0.25); transform: rotateY(180deg); display: flex; flex-direction: column; padding: 1.2rem 1.4rem; justify-content: center; }
 .flip-back-title { font-family: var(--fmono); font-size: 0.7rem; color: var(--t-grn); font-weight: 600; margin-bottom: 0.6rem; letter-spacing: 0.05em; }
 .flip-back-desc { font-family: var(--fmono); font-size: 0.68rem; color: #8fba9f; line-height: 1.75; }
@@ -868,7 +871,7 @@ footer { padding: 1.5rem 3rem; border-top: 1px solid var(--border); display: fle
   <a href="https://rajahimakar.github.io" style="color:var(--green);text-decoration:none;">rajahimakar.github.io</a>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function toggleExp(hdr) {
   const body = hdr.nextElementSibling;
   const tog = hdr.querySelector('.exp-tog');
@@ -876,8 +879,20 @@ function toggleExp(hdr) {
   body.classList.toggle('open', !isOpen);
   tog.innerHTML = isOpen ? '<span>+</span> expand' : '<span>−</span> collapse';
 }
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 70);
-      obs.unobserve(e.target);
+
+// Only animate if IntersectionObserver is supported
+if ('IntersectionObserver' in window) {
+  document.querySelectorAll('.reveal').forEach(r => r.classList.add('will-animate'));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+}
+</script>
+</body>
+</html>
